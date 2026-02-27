@@ -184,4 +184,130 @@
         <a href="#" class="nav-logo">
             <img src="IMENSO%20BLANCO.jpg" alt="IMENSO">
         </a>
-        
+        <div class="nav-links">
+            <a href="#productos">Productos</a>
+            <a href="#">Soporte</a>
+            <a href="https://www.mercadolibre.com.mx/pagina/imensomex" target="_blank">Tienda Oficial</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <p style="letter-spacing: 5px; margin-bottom: 10px;">POWERED BY IMENSO</p>
+        <h1>EVOLUTION<br>OF SOUND</h1>
+    </header>
+
+    <h2 class="section-title" id="productos">CATÁLOGO 2026</h2>
+    
+    <div class="products-grid">
+        <div class="product-card" onclick="verProducto('E2008')">
+            <div class="product-badge">BEST SELLER</div>
+            <div class="product-sku">IMS-E2008</div>
+            <img src="e2008.png" alt="E2008" class="product-img-main">
+            <div class="product-name">AUDÍFONO PRO 5.4</div>
+            <div class="product-price">$209</div>
+        </div>
+
+        <div class="product-card" onclick="verProducto('E2009')">
+            <div class="product-sku">IMS-E2009</div>
+            <img src="e2009.png" alt="E2009" class="product-img-main">
+            <div class="product-name">TWS HD COMPACT</div>
+            <div class="product-price">$148</div>
+        </div>
+
+        <div class="product-card" onclick="verProducto('E2010')">
+            <div class="product-sku">IMS-E2010</div>
+            <img src="e2010.png" alt="E2010" class="product-img-main">
+            <div class="product-name">ANC + ENC IN-EAR</div>
+            <div class="product-price">$189</div>
+        </div>
+
+        <div class="product-card" onclick="verProducto('E2011')">
+            <div class="product-badge">GAMER</div>
+            <div class="product-sku">IMS-E2011</div>
+            <img src="e2011.png" alt="E2011" class="product-img-main">
+            <div class="product-name">OPEN-EAR BT 5.4</div>
+            <div class="product-price">$266</div>
+        </div>
+
+        <div class="product-card" onclick="verProducto('E2012')">
+            <div class="product-sku">IMS-E2012</div>
+            <img src="e2012.png" alt="E2012" class="product-img-main">
+            <div class="product-name">LONG BATTERY TWS</div>
+            <div class="product-price">$269</div>
+        </div>
+
+        <div class="product-card" onclick="verProducto('E2013')">
+            <div class="product-sku">IMS-E2013</div>
+            <img src="e2013.png" alt="E2013" class="product-img-main">
+            <div class="product-name">ENC SPORT & WORK</div>
+            <div class="product-price">$298</div>
+        </div>
+
+        <div class="product-card" onclick="verProducto('E2015')">
+            <div class="product-sku">IMS-E2015</div>
+            <img src="E2015.png" alt="E2015" class="product-img-main">
+            <div class="product-name">SLEEP IN-EAR</div>
+            <div class="product-price">$329</div>
+        </div>
+
+        <div class="product-card" onclick="verProducto('C4013')">
+            <div class="product-badge" style="background:var(--black); color:white;">MAX POWER</div>
+            <div class="product-sku">IMS-C4013</div>
+            <img src="c4013.png" alt="C4013" class="product-img-main">
+            <div class="product-name">POWERBANK 15K</div>
+            <div class="product-price">$527</div>
+        </div>
+
+        <div class="product-card" onclick="verProducto('S1048')">
+            <div class="product-sku">IMS-S1048</div>
+            <img src="S1048.png" alt="S1048" class="product-img-main">
+            <div class="product-name">BOCINA MAGNÉTICA</div>
+            <div class="product-price">$199</div>
+        </div>
+    </div>
+
+    <div id="vista-producto">
+        <button class="btn-close" onclick="cerrarProducto()">VOLVER</button>
+        <div id="detalle-contenido" style="max-width:1100px; margin:40px auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:50px;">
+            </div>
+    </div>
+
+    <script>
+        const productosInfo = {
+            'E2008': { name: 'AUDÍFONO PRO 5.4', price: '$209', desc: 'Audio Hi-Fi con Bluetooth 5.4. Estabilidad total.', specs: ['BT 5.4', 'Llamadas HD', '30h Batería'], img: 'e2008.png' },
+            'E2009': { name: 'TWS HD COMPACT', price: '$148', desc: 'Diseño minimalista con audio optimizado.', specs: ['Compacto', 'TWS 5.3', 'Carga USB-C'], img: 'e2009.png' },
+            'E2010': { name: 'ANC + ENC IN-EAR', price: '$189', desc: 'Cancelación de ruido para música pura.', specs: ['ANC', 'ENC', 'Gamer Mode'], img: 'e2010.png' },
+            'E2011': { name: 'OPEN-EAR BT 5.4', price: '$266', desc: 'Escucha tu entorno mientras disfrutas tu música.', specs: ['Open Ear', 'BT 5.4', 'IPX5'], img: 'e2011.png' },
+            'E2012': { name: 'LONG BATTERY TWS', price: '$269', desc: 'Hasta 45 horas de uso total con estuche.', specs: ['45h Batería', 'Ergonómicos', 'Deep Bass'], img: 'e2012.png' },
+            'E2013': { name: 'ENC SPORT & WORK', price: '$298', desc: 'Llamadas claras en cualquier lugar.', specs: ['ENC Dual', 'Sweatproof', 'Quick Charge'], img: 'e2013.png' },
+            'E2015': { name: 'SLEEP IN-EAR', price: '$329', desc: 'Tan pequeños que puedes dormir con ellos.', specs: ['Sleep Design', 'Ultra Soft', 'Passive ANC'], img: 'E2015.png' },
+            'C4013': { name: 'POWERBANK 15K', price: '$527', desc: 'Energía de respaldo masiva inalámbrica.', specs: ['15,000 mAh', 'Wireless Charge', 'LCD Display'], img: 'c4013.png' },
+            'S1048': { name: 'BOCINA MAGNÉTICA', price: '$199', desc: 'Pégala donde sea. Sonido potente.', specs: ['Mag Base', 'Subwoofer', 'TWS Link'], img: 'S1048.png' }
+        };
+
+        function verProducto(id) {
+            const p = productosInfo[id];
+            const contenido = document.getElementById('detalle-contenido');
+            contenido.innerHTML = `
+                <div style="text-align:center;"><img src="${p.img}" style="width:100%; max-width:450px;"></div>
+                <div>
+                    <h1 style="font-family:var(--font-display); font-size:60px;">${p.name}</h1>
+                    <p style="font-size:28px; color:var(--accent-dark); font-weight:bold;">${p.price}</p>
+                    <p style="margin:20px 0; color:#666;">${p.desc}</p>
+                    <ul style="list-style:none; border-top:1px solid #eee; padding-top:20px;">
+                        ${p.specs.map(s => `<li style="padding:8px 0;">• ${s}</li>`).join('')}
+                    </ul>
+                    <a href="https://www.mercadolibre.com.mx/pagina/imensomex" target="_blank" class="shop-btn">VER EN MERCADO LIBRE</a>
+                </div>
+            `;
+            document.getElementById('vista-producto').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function cerrarProducto() {
+            document.getElementById('vista-producto').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+</html>
