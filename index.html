@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMENSO — Audio & Power</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f4f0;
+    --accent: #ff4d00;
+    --accent2: #00d4ff;
+    --gray: #1a1a1a;
+    --gray2: #2a2a2a;
+    --text-muted: #666;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: difference;
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 4px;
+    color: var(--white);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(80px, 10vw, 140px);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    margin-bottom: 32px;
+  }
+
+  .hero-title span {
+    display: block;
+    color: var(--accent);
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #aaa;
+    max-width: 400px;
+    margin-bottom: 48px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--accent);
+    color: var(--white);
+    text-decoration: none;
+    padding: 16px 32px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+    width: fit-content;
+  }
+
+  .hero-cta:hover {
+    background: #ff6620;
+    transform: translateX(4px);
+  }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gray);
+    overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: 'IMENSO';
+    position: absolute;
+    font-family: var(--font-display);
+    font-size: 200px;
+    color: rgba(255,255,255,0.03);
+    letter-spacing: 10px;
+    white-space: nowrap;
+    transform: rotate(-90deg);
+  }
+
+  .hero-visual {
+    width: 70%;
+    max-width: 400px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ff4d0020, transparent 60%),
+                radial-gradient(circle at 70% 70%, #00d4ff15, transparent 60%),
+                var(--gray2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hero-visual::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent) 0deg, transparent 60deg, transparent 300deg, var(--accent) 360deg);
+    z-index: -1;
+    animation: rotate 8s linear infinite;
+  }
+
+  .hero-icon {
+    font-size: 80px;
+    filter: drop-shadow(0 0 30px rgba(255,77,0,0.4));
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+  }
+
+  .stat {
+    padding: 40px;
+    border-right: 1px solid #222;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--accent);
+    transition: height 0.4s;
+  }
+
+  .stat:hover::before { height: 100%; }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 52px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* PRODUCTS */
+  .section {
+    padding: 100px 60px;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 32px;
+  }
+
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 56px;
+    letter-spacing: 2px;
+  }
+
+  .section-count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .product-card {
+    background: var(--gray);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.3s;
+    group: true;
+  }
+
+  .product-card:hover { background: var(--gray2); }
+
+  .product-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .product-card:hover::after { transform: scaleX(1); }
+
+  .product-sku {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .product-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+    display: block;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+  }
+
+  .product-name {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .product-desc {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .product-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .spec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #333;
+  }
+
+  .spec-key {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .spec-val {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent2);
+  }
+
+  .product-price {
+    font-family: var(--font-display);
+    font-size: 36px;
+    color: var(--accent);
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--accent);
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 4px 8px;
+    text-transform: uppercase;
+  }
+
+  /* CATEGORIES */
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+
+  .category-card {
+    background: var(--gray);
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .category-card:hover { background: var(--gray2); }
+
+  .category-icon { font-size: 40px; }
+
+  .category-name {
+    font-family: var(--font-display);
+    font-size: 40px;
+    letter-spacing: 2px;
+  }
+
+  .category-count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+  }
+
+  .category-arrow {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    font-size: 24px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s;
+    color: var(--accent);
+  }
+
+  .category-card:hover .category-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* BRAND SECTION */
+  .brand-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 60vh;
+  }
+
+  .brand-left {
+    background: var(--accent);
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .brand-headline {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 0.95;
+    color: var(--black);
+  }
+
+  .brand-body {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(0,0,0,0.7);
+    max-width: 380px;
+  }
+
+  .brand-right {
+    background: var(--gray);
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .brand-value {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .brand-value-num {
+    font-family: var(--font-display);
+    font-size: 48px;
+    color: var(--accent);
+    line-height: 1;
+    min-width: 60px;
+  }
+
+  .brand-value-text h4 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .brand-value-text p {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.6;
+  }
+
+  /* CONTENT PLAN */
+  .content-plan {
+    background: var(--gray);
+  }
+
+  .plan-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    margin-top: 0;
+  }
+
+  .plan-day {
+    background: var(--black);
+    padding: 28px 20px;
+    min-height: 200px;
+    position: relative;
+  }
+
+  .plan-day-name {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .plan-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .plan-item {
+    padding: 8px 10px;
+    font-size: 11px;
+    line-height: 1.4;
+    border-left: 2px solid;
+  }
+
+  .plan-item.tiktok { border-color: #ff0050; background: rgba(255,0,80,0.06); color: #ff6688; }
+  .plan-item.instagram { border-color: #e1306c; background: rgba(225,48,108,0.06); color: #e1306c; }
+  .plan-item.facebook { border-color: #1877f2; background: rgba(24,119,242,0.06); color: #5599ff; }
+  .plan-item.whatsapp { border-color: #25d366; background: rgba(37,211,102,0.06); color: #25d366; }
+  .plan-item.meli { border-color: var(--accent); background: rgba(255,77,0,0.06); color: var(--accent); }
+  .plan-item.rest { border-color: #444; background: rgba(255,255,255,0.03); color: #666; font-style: italic; }
+
+  .plan-platform {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 2px;
+  }
+
+  /* CONTENT TYPES */
+  .content-types {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 2px;
+  }
+
+  .content-type {
+    background: var(--black);
+    padding: 40px 32px;
+    border-top: 3px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  .content-type:nth-child(1) { border-color: #ff0050; }
+  .content-type:nth-child(2) { border-color: #e1306c; }
+  .content-type:nth-child(3) { border-color: var(--accent); }
+  .content-type:nth-child(4) { border-color: #25d366; }
+
+  .content-type-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+
+  .content-type-name {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .content-type-desc {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .content-tips {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .content-tips li {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: #666;
+    padding-left: 12px;
+    position: relative;
+  }
+
+  .content-tips li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 60px;
+    border-top: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 36px;
+    letter-spacing: 4px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--accent); }
+
+  .footer-copy {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: #444;
+    letter-spacing: 1px;
+  }
+
+  /* ML SHOP CTA */
+  .shop-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px;
+    background: var(--gray);
+    gap: 40px;
+  }
+
+  .shop-cta-text h2 {
+    font-family: var(--font-display);
+    font-size: 52px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .shop-cta-text p {
+    font-size: 15px;
+    color: #888;
+  }
+
+  .shop-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #ffe600;
+    color: #000;
+    text-decoration: none;
+    padding: 20px 40px;
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    transition: transform 0.2s;
+  }
+
+  .shop-btn:hover { transform: scale(1.02); }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+
+  .tab {
+    padding: 16px 32px;
+    background: var(--gray2);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    color: var(--text-muted);
+    transition: all 0.2s;
+  }
+
+  .tab.active, .tab:hover {
+    background: var(--accent);
+    color: var(--white);
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-left > * {
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-tag { animation-delay: 0.1s; }
+  .hero-title { animation-delay: 0.2s; }
+  .hero-desc { animation-delay: 0.3s; }
+  .hero-cta { animation-delay: 0.4s; }
+
+  /* TICKER */
+  .ticker {
+    background: var(--accent);
+    padding: 12px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 20s linear infinite;
+  }
+
+  .ticker-inner span {
+    font-family: var(--font-display);
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--black);
+    padding: 0 40px;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .products-grid { grid-template-columns: 1fr; }
+    .categories { grid-template-columns: 1fr; }
+    .brand-section { grid-template-columns: 1fr; }
+    .plan-grid { grid-template-columns: repeat(2, 1fr); }
+    .content-types { grid-template-columns: repeat(2, 1fr); }
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .section { padding: 60px 20px; }
+    footer { flex-direction: column; gap: 24px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">IMENSO</div>
+  <ul class="nav-links">
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#marca">Marca</a></li>
+    <li><a href="#tienda">Tienda</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">// Audio & Power Technology</div>
+    <h1 class="hero-title">
+      SONIDO<br>
+      <span>SIN</span><br>
+      LÍMITES
+    </h1>
+    <p class="hero-desc">Tecnología de audio y carga diseñada para tu ritmo de vida. Audífonos inalámbricos, powerbanks y bocinas que combinan desempeño real con diseño contemporáneo.</p>
+    <a href="https://www.mercadolibre.com.mx/pagina/imensomex" target="_blank" class="hero-cta">
+      Ver tienda completa →
+    </a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <span class="hero-icon">🎧</span>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>BLUETOOTH 5.4</span><span>CANCELACIÓN DE RUIDO ANC+ENC</span><span>CARGA RÁPIDA</span><span>HASTA 15000MAH</span><span>ENVÍO EXPRESS</span><span>GARANTÍA INCLUIDA</span><span>BLUETOOTH 5.4</span><span>CANCELACIÓN DE RUIDO ANC+ENC</span><span>CARGA RÁPIDA</span><span>HASTA 15000MAH</span><span>ENVÍO EXPRESS</span><span>GARANTÍA INCLUIDA</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-number">11</div>
+    <div class="stat-label">SKUs Activos</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">5.4</div>
+    <div class="stat-label">Bluetooth Versión</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">15K</div>
+    <div class="stat-label">mAh Máximo</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">610+</div>
+    <div class="stat-label">Seguidores Tienda</div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section" id="productos" style="padding-bottom: 0;">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">// Líneas de producto</div>
+      <h2 class="section-title">CATÁLOGO</h2>
+    </div>
+    <div class="section-count">03 CATEGORÍAS</div>
+  </div>
+</section>
+
+<div class="categories">
+  <div class="category-card">
+    <span class="category-icon">🎧</span>
+    <div class="category-name">AUDÍFONOS</div>
+    <div class="category-count">08 MODELOS — BLUETOOTH 5.4</div>
+    <p style="font-size:13px;color:#888;margin-top:8px;">Clip-ear, in-ear, TWS, ANC+ENC. Para música, llamadas, deporte y gaming.</p>
+    <span class="category-arrow">→</span>
+  </div>
+  <div class="category-card">
+    <span class="category-icon">🔋</span>
+    <div class="category-name">POWERBANKS</div>
+    <div class="category-count">02 MODELOS — CARGA RÁPIDA</div>
+    <p style="font-size:13px;color:#888;margin-top:8px;">10,000 y 15,000 mAh con carga inalámbrica. Para el trabajo y el viaje.</p>
+    <span class="category-arrow">→</span>
+  </div>
+  <div class="category-card">
+    <span class="category-icon">🔊</span>
+    <div class="category-name">BOCINAS</div>
+    <div class="category-count">01 MODELO — MAGNÉTICA</div>
+    <p style="font-size:13px;color:#888;margin-top:8px;">Mini bocina Bluetooth magnética con subwoofer. Compacta y potente.</p>
+    <span class="category-arrow">→</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="section" style="padding-top: 2px;" id="productos-detalle">
+  <div class="section-header" style="margin-top: 60px;">
+    <div>
+      <div class="section-tag">// Especificaciones técnicas</div>
+      <h2 class="section-title">PRODUCTOS</h2>
+    </div>
+    <div class="section-count">11 SKUs</div>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- E2008 -->
+    <div class="product-card">
+      <div class="product-badge">⭐ Top Ventas</div>
+      <div class="product-sku">IMS-E2008</div>
+      <span class="product-icon">🎧</span>
+      <div class="product-name">AUDÍFONO BLUETOOTH 5.4</div>
+      <p class="product-desc">Sonido claro y potente con batería de larga duración. Micrófono integrado para música y llamadas todo el día.</p>
+      <div class="product-specs">
+        <div class="spec"><span class="spec-key">Conexión</span><span class="spec-val">Bluetooth 5.4</span></div>
+        <div class="spec"><span class="spec-key">Tipo</span><span class="spec-val">In-ear / Manos libres</span></div>
+        <div class="spec"><span class="spec-key">Micrófono</span><span class="spec-val">Integrado HD</span></div>
+        <div class="spec"><span class="spec-key">Uso</span><span class="spec-val">Música + Llamadas</span></div>
+      </div>
+      <div class="product-price">$209</div>
+    </div>
+
+    <!-- E2009 -->
+    <div class="product-card">
+      <div class="product-sku">IMS-E2009</div>
+      <span class="product-icon">🎵</span>
+      <div class="product-name">AURICULARES TWS HD</div>
+      <p class="product-desc">Auriculares inalámbricos Bluetooth con micrófono para llamadas en alta definición.</p>
+      <div class="product-specs">
+        <div class="spec"><span class="spec-key">Conexión</span><span class="spec-val">Bluetooth</span></div>
+        <div class="spec"><span class="spec-key">Tipo</span><span class="spec-val">TWS</span></div>
+        <div class="spec"><span class="spec-key">Micrófono</span><span class="spec-val">Llamadas HD</span></div>
+        <div class="spec"><span class="spec-key">Diseño</span><span class="spec-val">Compacto</span></div>
+      </div>
+      <div class="product-price">$148</div>
+    </div>
+
+    <!-- E2010 -->
+    <div class="product-card">
+      <div class="product-sku">IMS-E2010</div>
+      <span class="product-icon">🔇</span>
+      <div class="product-name">ANC + ENC IN-EAR</div>
+      <p class="product-desc">Cancelación activa de ruido ANC + ENC. Llamadas en alta definición y música superior.</p>
+      <div class="product-specs">
+        <div class="spec"><span class="spec-key">Conexión</span><span class="spec-val">Bluetooth 5.4</span></div>
+        <div class="spec"><span class="spec-key">Cancelación</span><span class="spec-val">ANC + ENC</span></div>
+        <div class="spec"><span class="spec-key">Tipo</span><span class="spec-val">In-ear</span></div>
+        <div class="spec"><span class="spec-key">Uso</span><span class="spec-val">Gamer + Deportivo</span></div>
+      </div>
+      <div class="product-price">$189</div>
+    </div>
+
+    <!-- E2011 -->
+    <div class="product-card">
+      <div class="product-badge" style="background:#00d4ff;color:#000;">🔥 Trending</div>
+      <div class="product-sku">IMS-E2011</div>
+      <span class="product-icon">🎮</span>
+      <div class="product-name">OPEN-EAR GAMER BT 5.4</div>
+      <p class="product-desc">Sonido estéreo para gamer y deportivos. Open-ear con micrófono manos libres. Disponible en negro.</p>
+      <div class="product-specs">
+        <div class="spec"><span class="spec-key">Conexión</span><span class="spec-val">Bluetooth 5.4</span></div>
+        <div class="spec"><span class="spec-key">Tipo</span><span class="spec-val">Open-ear</span></div>
+        <div class="spec"><span class="spec-key">Diseño</span><span class="spec-val">Sport / Gamer</span></div>
+        <div class="spec"><span class="spec-key">Color</span><span class="spec-val">Negro</span></div>
+      </div>
+      <div class="product-price">$266</div>
+    </div>
+
+    <!-- E2012 -->
+    <div class="product-card">
+      <div class="product-sku">IMS-E2012</div>
+      <span class="product-icon">🎼</span>
+      <div class="product-name">TWS LARGA DURACIÓN</div>
+      <p class="product-desc">Audífonos inalámbricos TWS con batería de larga duración. Diseño compacto y elegante.</p>
+      <div class="product-specs">
+        <div class="spec"><span class="spec-key">Tipo</span><span class="spec-val">TWS</span></div>
+        <div class="spec"><span class="spec-key">Batería</span><span class="spec-val">Larga duración</span></div>
+        <div class="spec"><span class="spec-key">Diseño</span><span class="spec-val">Compacto</span></div>
+        <div class="spec"><span class="spec-key">Conexión</span><span class="spec-val">Bluetooth</span></div>
+      </div>
+      <div class="product-price">$269</div>
+    </div>
+
+    <!-- E2013 -->
+    <div class="product-card">
+      <div class="product-sku">IMS-E2013</div>
+      <span class="product-icon">🏃</span>
+      <div class="product-name">ENC SPORT & WORK</div>
+      <p class="product-desc">Cancelación ENC para llamadas y deporte. Sonido potente y batería duradera para trabajo y uso diario.</p>
+      <div class="product-specs">
+        <div class="spec"><span class="spec-key">Cancelación</span><span class="spec-val">ENC</span></div>
+        <div class="spec"><span class="spec-key">Uso</span><span class="spec-val">Deporte + Trabajo</span></div>
+        <div class="spec"><span class="spec-key">Batería</span><span class="spec-val">Alta duración</span></div>
+        <div class="spec"><span class="spec-key">Micrófono</span><span class="spec-val">Manos libres</span></div>
+      </div>
+      <div class="product-price">$298</div>
+    </div>
+
+    <!-- E2014 -->
+    <div class="product-card">
+      <div class="product-sku">IMS-E2014</div>
+      <span class="product-icon">📎</span>
+      <div class="product-name">CLIP-EAR BLUETOOTH</div>
+      <p class="product-desc">Diseño clip cómodo y elegante. Sonido estéreo claro para llamadas y música sin complicaciones.</p>
+      <div class="product-specs">
+        <div class="spec"><span class="spec-key">Tipo</span><span class="spec-val">Clip-ear</span></div>
+        <div class="spec"><span class="spec-key">Sonido</span><span class="spec-val">Estéreo claro</span></div>
+        <div class="spec"><span class="spec-key">Uso</span><span class="spec-val">Llamadas + Música</span></div>
+        <div class="spec"><span class="spec-key">Diseño</span><span class="spec-val">Cómodo / Elegante</span></div>
+      </div>
+      <div class="product-price">$229</div>
+    </div>
+
+    <!-- E2015 -->
+    <div class="product-card">
+      <div class="product-sku">IMS-E2015</div>
+      <span class="product-icon">😴</span>
+      <div class="product-name">SLEEP IN-EAR COMPACTO</div>
+      <p class="product-desc">Diseñado para dormir. Sin presión en el oído, sin caídas. Cancelación física de ruido con diafragma compuesto.</p>
+      <div class="product-specs">
+        <div class="spec"><span class="spec-key">Uso</span><span class="spec-val">Dormir / Descanso</span></div>
+        <div class="spec"><span class="spec-key">Cancelación</span><span class="spec-val">Física pasiva</span></div>
+        <div class="spec"><span class="spec-key">Diseño</span><span class="spec-val">Ultra compacto</span></div>
+        <div class="spec"><span class="spec-key">Ajuste</span><span class="spec-val">Sin presión</span></div>
+      </div>
+      <div class="product-price">$329</div>
+    </div>
+
+    <!-- C4013 -->
+    <div class="product-card">
+      <div class="product-badge">⚡ Más potente</div>
+      <div class="product-sku">IMS-C4013</div>
+      <span class="product-icon">🔋</span>
+      <div class="product-name">POWERBANK 15,000MAH</div>
+      <p class="product-desc">Batería portátil 15,000 mAh con carga súper rápida. La mayor capacidad del portafolio Imenso.</p>
+      <div class="product-specs">
+        <div class="spec"><span class="spec-key">Capacidad</span><span class="spec-val">15,000 mAh</span></div>
+        <div class="spec"><span class="spec-key">Carga</span><span class="spec-val">Súper rápida</span></div>
+        <div class="spec"><span class="spec-key">Inalámbrica</span><span class="spec-val">Sí</span></div>
+        <div class="spec"><span class="spec-key">Ideal para</span><span class="spec-val">Viaje / Trabajo</span></div>
+      </div>
+      <div class="product-price">$527</div>
+    </div>
+
+    <!-- C4014 -->
+    <div class="product-card">
+      <div class="product-badge" style="background:#00d4ff;color:#000;">🏆 Best Seller</div>
+      <div class="product-sku">IMS-C4014</div>
+      <span class="product-icon">⚡</span>
+      <div class="product-name">POWERBANK 10,000MAH</div>
+      <p class="product-desc">Batería portátil 10,000 mAh carga súper rápida. El más popular del portafolio. Disponible en beige.</p>
+      <div class="product-specs">
+        <div class="spec"><span class="spec-key">Capacidad</span><span class="spec-val">10,000 mAh</span></div>
+        <div class="spec"><span class="spec-key">Carga</span><span class="spec-val">Súper rápida</span></div>
+        <div class="spec"><span class="spec-key">Inalámbrica</span><span class="spec-val">Sí</span></div>
+        <div class="spec"><span class="spec-key">Color pop.</span><span class="spec-val">Beige</span></div>
+      </div>
+      <div class="product-price">$480</div>
+    </div>
+
+    <!-- S1048 -->
+    <div class="product-card">
+      <div class="product-sku">IMS-S1048</div>
+      <span class="product-icon">🔊</span>
+      <div class="product-name">MINI BOCINA MAGNÉTICA</div>
+      <p class="product-desc">Mini bocina Bluetooth magnética con subwoofer altavoz. Compacta, potente y fácil de llevar a cualquier lado.</p>
+      <div class="product-specs">
+        <div class="spec"><span class="spec-key">Tipo</span><span class="spec-val">Mini / Portátil</span></div>
+        <div class="spec"><span class="spec-key">Conexión</span><span class="spec-val">Bluetooth</span></div>
+        <div class="spec"><span class="spec-key">Bajo</span><span class="spec-val">Subwoofer</span></div>
+        <div class="spec"><span class="spec-key">Fijación</span><span class="spec-val">Magnética</span></div>
+      </div>
+      <div class="product-price">$199</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BRAND -->
+<section class="brand-section" id="marca">
+  <div class="brand-left">
+    <div class="brand-headline">TECNOLOGÍA<br>QUE SE<br>ESCUCHA.</div>
+    <p class="brand-body">Imenso nació con una convicción simple: la tecnología de audio y carga de calidad no debería ser un lujo. Cada producto está diseñado para ofrecer desempeño real a un precio accesible, sin comprometer la experiencia del usuario.</p>
+  </div>
+  <div class="brand-right">
+    <div class="brand-value">
+      <div class="brand-value-num">01</div>
+      <div class="brand-value-text">
+        <h4>CALIDAD REAL</h4>
+        <p>Componentes seleccionados para durabilidad y desempeño. No solo especificaciones en papel.</p>
+      </div>
+    </div>
+    <div class="brand-value">
+      <div class="brand-value-num">02</div>
+      <div class="brand-value-text">
+        <h4>PRECIO JUSTO</h4>
+        <p>Tecnología accesible sin sacrificar la experiencia. El mejor balance del mercado.</p>
+      </div>
+    </div>
+    <div class="brand-value">
+      <div class="brand-value-num">03</div>
+      <div class="brand-value-text">
+        <h4>SOPORTE DIRECTO</h4>
+        <p>Respaldo de marca mexicana con atención real y garantía incluida en todos los productos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- SHOP CTA -->
+<div class="shop-cta" id="tienda">
+  <div class="shop-cta-text">
+    <h2>COMPRA EN<br>MERCADO LIBRE</h2>
+    <p>Envío express disponible · Garantía incluida · Pago en meses sin intereses</p>
+  </div>
+  <a href="https://www.mercadolibre.com.mx/pagina/imensomex" target="_blank" class="shop-btn">
+    🛒 Ver tienda Imenso
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">IMENSO</div>
+  <ul class="footer-links">
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#marca">Marca</a></li>
+    <li><a href="#contenido">Plan de contenido</a></li>
+    <li><a href="https://www.mercadolibre.com.mx/pagina/imensomex" target="_blank">Tienda ML</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 IMENSO — Audio & Power Technology</div>
+</footer>
+
+</body>
+</html>
