@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMENSO | Audio & Power Evolution</title>
+    <title>IMENSO | Audio & Power Official</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --white: #ffffff;
-            --black: #000000;
-            --accent: #2ecc71;
-            --gray: #f8f8f8;
-            --font-display: 'Bebas Neue', sans-serif;
+            --white: #ffffff; --black: #000000; --accent: #2ecc71;
+            --gray: #f9f9f9; --font-display: 'Bebas Neue', sans-serif;
             --font-mono: 'DM Mono', monospace;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--white); color: var(--black); font-family: var(--font-mono); line-height: 1.6; }
 
@@ -22,13 +18,13 @@
         nav {
             display: flex; justify-content: space-between; align-items: center;
             padding: 15px 5%; position: fixed; width: 100%; top: 0;
-            background: rgba(255,255,255,0.98); z-index: 1000; border-bottom: 1px solid #eee;
+            background: white; z-index: 1000; border-bottom: 1px solid #eee;
         }
         .nav-logo img { height: 40px; cursor: pointer; }
 
         /* HERO */
-        .hero { padding: 140px 5% 60px; text-align: center; }
-        .hero h1 { font-family: var(--font-display); font-size: clamp(60px, 12vw, 110px); line-height: 0.8; margin-bottom: 10px; }
+        .hero { padding: 140px 5% 40px; text-align: center; }
+        .hero h1 { font-family: var(--font-display); font-size: 80px; line-height: 0.9; }
 
         /* FILTROS */
         .filter-container { 
@@ -36,53 +32,47 @@
             background: var(--gray); position: sticky; top: 70px; z-index: 900;
         }
         .filter-btn { 
-            padding: 10px 22px; border: 1px solid #ddd; background: white; 
-            border-radius: 25px; font-size: 11px; cursor: pointer; font-family: var(--font-mono); transition: 0.3s;
+            padding: 10px 20px; border: 1px solid #ddd; background: white; 
+            border-radius: 20px; font-size: 11px; cursor: pointer; transition: 0.3s;
         }
-        .filter-btn.active { background: var(--black); color: white; border-color: var(--black); }
+        .filter-btn.active { background: var(--black); color: white; }
 
         /* GRID */
         .products-grid { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 30px; padding: 60px 5%; 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); 
+            gap: 25px; padding: 40px 5%; 
         }
         .product-card { 
-            background: var(--gray); padding: 30px; border-radius: 15px; 
-            cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--gray); padding: 25px; border-radius: 12px; 
+            cursor: pointer; transition: 0.3s;
         }
-        .product-card:hover { transform: translateY(-10px); background: #f0f0f0; }
-        .product-img { width: 100%; height: 240px; object-fit: contain; margin-bottom: 20px; mix-blend-mode: multiply; }
-        .product-name { font-family: var(--font-display); font-size: 26px; letter-spacing: 1px; }
-        .product-price { color: var(--accent); font-weight: bold; font-size: 20px; }
+        .product-card:hover { transform: translateY(-5px); background: #f0f0f0; }
+        .product-img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; }
+        .product-name { font-family: var(--font-display); font-size: 24px; }
+        .product-price { color: var(--accent); font-weight: bold; font-size: 18px; }
 
-        /* VISTA DE DETALLE OPTIMIZADA */
+        /* CAPA DE DETALLE (PÁGINA DE PRODUCTO) */
         #product-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: white; z-index: 2000; overflow-y: auto; padding: 120px 5% 60px; /* Más padding arriba */
+            background: white; z-index: 2000; overflow-y: auto; padding: 120px 5% 60px;
         }
         .close-overlay { 
             position: fixed; top: 30px; right: 5%; background: var(--black); 
-            color: white; border: none; padding: 12px 25px; cursor: pointer; 
-            font-family: var(--font-mono); z-index: 2100; border-radius: 5px;
+            color: white; border: none; padding: 12px 25px; cursor: pointer; border-radius: 5px;
         }
-        .detail-layout { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+        .detail-layout { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
         
-        .specs-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 13px; }
-        .specs-table td { padding: 12px 0; border-bottom: 1px solid #eee; }
+        .specs-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 13px; }
+        .specs-table td { padding: 10px 0; border-bottom: 1px solid #eee; }
         .specs-table td:first-child { font-weight: bold; color: #888; width: 40%; }
 
         .buy-button { 
             display: block; background: #ffe600; color: black; text-align: center; 
-            padding: 20px; text-decoration: none; font-family: var(--font-display); 
-            font-size: 26px; margin-top: 40px; border-radius: 10px; transition: 0.3s;
+            padding: 18px; text-decoration: none; font-family: var(--font-display); 
+            font-size: 24px; margin-top: 30px; border-radius: 8px;
         }
-        .buy-button:hover { background: #f2db00; transform: scale(1.02); }
 
-        @media (max-width: 850px) {
-            .detail-layout { grid-template-columns: 1fr; }
-            #product-overlay { padding-top: 100px; }
-            .hero h1 { font-size: 60px; }
-        }
+        @media (max-width: 800px) { .detail-layout { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -91,12 +81,12 @@
         <div class="nav-logo" onclick="location.reload()">
             <img src="IMENSO%20BLANCO.jpg" alt="IMENSO">
         </div>
-        <div style="font-size: 10px; letter-spacing: 2px; font-weight: bold;">MEXICO OFFICIAL STORE</div>
+        <div style="font-size: 10px; letter-spacing: 2px;">MEXICO OFFICIAL STORE</div>
     </nav>
 
     <header class="hero">
-        <p style="font-size: 13px; letter-spacing: 6px; margin-bottom: 15px; color: var(--accent);">PREMIUM AUDIO & POWER</p>
-        <h1>EVOLUTION<br>OF SOUND</h1>
+        <p style="letter-spacing: 5px; font-size: 12px; margin-bottom: 10px;">EVOLUTION OF SOUND</p>
+        <h1>CATÁLOGO 2026</h1>
     </header>
 
     <div class="filter-container">
@@ -106,55 +96,73 @@
         <button class="filter-btn" onclick="applyFilter('bocinas', this)">BOCINAS</button>
     </div>
 
-    <main class="products-grid" id="catalog-grid"></main>
+    <main class="products-grid" id="main-catalog"></main>
 
     <div id="product-overlay">
-        <button class="close-overlay" onclick="closeDetail()">← VOLVER AL CATÁLOGO</button>
+        <button class="close-overlay" onclick="closeDetail()">VOLVER</button>
         <div id="overlay-content" class="detail-layout"></div>
     </div>
 
     <script>
         const inventory = [
-            { 
-                id: 1, cat: 'audifonos', name: 'AUDÍFONO PRO 5.4', sku: 'E2008', price: '$209', img: 'e2008.png', 
-                desc: 'Desempeño de conexión Premium. Bluetooth 5.4 con 10m de alcance estable. Experiencia de sonido Hi-Fi con altavoz de 13mm.',
-                specs: {'Versión': 'BT 5.4', 'Batería Total': '20 Horas', 'Carga': 'Tipo-C 5V/1A', 'Driver': '13mm Hi-Fi'}
-            },
-            { 
-                id: 2, cat: 'audifonos', name: 'TWS HD COMPACT', sku: 'E2009', price: '$148', img: 'e2009.png', 
-                desc: 'Conexión inteligente y sonido de estudio. Superficie de piel auténtica texturizada con detalles metálicos premium.',
-                specs: {'Versión': 'BT 5.4', 'Batería Total': '25 Horas', 'Carga Flash': '10min = 2h música', 'Driver': '13mm Biomaterial'}
-            },
-            { 
-                id: 3, cat: 'audifonos', name: 'ANC + ENC IN-EAR', sku: 'E2010', price: '$189', img: 'e2010.png', 
-                desc: 'Revolución Antirruido. Cancelación activa ANC/ENC de -25dB. Sonido cinematográfico con certificación Dolby Atmos®.',
-                specs: {'Cancelación': 'ANC + ENC (-25dB)', 'Batería': '25 Horas', 'Micrófonos': '2 Silicona Pro', 'Carga': 'Tipo-C + Inalámbrica'}
-            },
-            { 
-                id: 4, cat: 'audifonos', name: 'OPEN-EAR SPORT', sku: 'E2011', price: '$266', img: 'e2011.png', 
-                desc: 'Audio abierto inteligente. Diseño no intraural para máximo confort y seguridad deportiva. Resistente a sudor IPX5.',
-                specs: {'Diseño': 'Open-Ear (No intraural)', 'Protección': 'IPX5 Sudor/Lluvia', 'Batería': '25 Horas', 'Modo Juego': 'Latencia 0.05s'}
-            },
-            { 
-                id: 5, cat: 'audifonos', name: 'LONG BATTERY TWS', sku: 'E2012', price: '$269', img: 'e2012.png', 
-                desc: 'Sonido Hi-Fi que transforma tu música en una experiencia cinematográfica. Diseño ergonómico basado en la proporción áurea.',
-                specs: {'Versión': 'BT 5.4', 'Batería': '30 Horas', 'Driver': '17mm Composite', 'Estuche': 'Aleación de Aluminio'}
-            },
-            { 
-                id: 6, cat: 'audifonos', name: 'ENC SPORT & WORK', sku: 'E2013', price: '$298', img: 'e2013.png', 
-                desc: 'Revolución en confort. Diseño abierto con tecnología Beamforming que reduce 98% las fugas de sonido.',
-                specs: {'Batería': '25 Horas', 'Driver': '10mm Titanio', 'Resistencia': 'IPX4', 'Peso': '28g ultra ligero'}
-            },
-            { 
-                id: 7, cat: 'audifonos', name: 'CLIP-ON SERIES', sku: 'E2014', price: '$315', img: 'E2014NEGRO.png', 
-                desc: 'Innovación Clip-on. Diseño aerodinámico que no entra en el canal auditivo, evitando daños y fatiga.',
-                specs: {'Autonomía': '40 Horas Totales', 'Carga Rápida': '10min = 2h', 'Tecnología': 'Air Conduction', 'Uso': 'Deportivo / Trabajo'}
-            },
-            { 
-                id: 8, cat: 'audifonos', name: 'SLEEP IN-EAR', sku: 'E2015', price: '$329', img: 'E2015.png', 
-                desc: 'Diseñados exclusivamente para dormir. Perfil ultra delgado de silicona suave para dormir de lado sin presión.',
-                specs: {'Uso': 'Sleep / ASMR / Ronquidos', 'Material': 'Silicona Médica', 'Batería': '24 Horas', 'Cancelación': '-28dB Pasiva'}
-            },
-            { 
-                id: 9, cat: 'power', name: 'POWERBANK 15K', sku: 'C4013', price: '$527', img: 'c4013.png', 
-                desc: 'Poder Dragón 15,000mAh. Carga rápida inalámbrica de 15W y pantalla LCD
+            { id: 1, cat: 'audifonos', name: 'AUDÍFONO PRO 5.4', sku: 'E2008', price: '$209', img: 'e2008.png', desc: 'Desempeño de conexión Premium. Bluetooth 5.4 con 10m de alcance estable. Llamadas nítidas y música HD.', specs: {'Bluetooth': '5.4', 'Batería': '20 Horas', 'Carga': 'Tipo-C'} },
+            { id: 2, cat: 'audifonos', name: 'TWS HD COMPACT', sku: 'E2009', price: '$148', img: 'e2009.png', desc: 'Conexión inteligente con AI Mejora de Voz. Superficie con textura de piel elegante.', specs: {'Driver': '13mm Biomaterial', 'Batería': '25 Horas', 'Carga Flash': '10min = 2h'} },
+            { id: 3, cat: 'audifonos', name: 'ANC + ENC IN-EAR', sku: 'E2010', price: '$189', img: 'e2010.png', desc: 'Cancelación activa de ruido -25dB. Sonido cinematográfico certificado Dolby Atmos®.', specs: {'Cancelación': 'ANC + ENC', 'Batería': '25 Horas', 'Peso': '4.2g'} },
+            { id: 4, cat: 'audifonos', name: 'OPEN-EAR SPORT', sku: 'E2011', price: '$266', img: 'e2011.png', desc: 'Audio abierto inteligente IPX5. Diseño no intraural para máximo confort deportivo.', specs: {'Protección': 'IPX5', 'Latencia': '0.05s', 'Batería': '25 Horas'} },
+            { id: 5, cat: 'audifonos', name: 'LONG BATTERY TWS', sku: 'E2012', price: '$269', img: 'e2012.png', desc: 'Sonido Hi-Fi Pro. Estuche de aleación de aluminio con efecto de iluminación 3D.', specs: {'Driver': '17mm Composite', 'Batería': '30 Horas', 'Material': 'Aluminio'} },
+            { id: 6, cat: 'audifonos', name: 'ENC SPORT & WORK', sku: 'E2013', price: '$298', img: 'e2013.png', desc: 'Revolución en confort. Tecnología Beamforming que reduce 98% las fugas de sonido.', specs: {'Certificación': 'IPX4', 'Batería': '25 Horas', 'Peso': '28g'} },
+            { id: 7, cat: 'audifonos', name: 'CLIP-ON SERIES', sku: 'E2014', price: '$315', img: 'E2014NEGRO.png', desc: 'Innovación Clip-on. Diseño aerodinámico que evita daños auditivos y fatiga.', specs: {'Autonomía': '40 Horas', 'Carga Rápida': '10min = 2h', 'Estilo': 'Clip-on'} },
+            { id: 8, cat: 'audifonos', name: 'SLEEP IN-EAR', sku: 'E2015', price: '$329', img: 'E2015.png', desc: 'Especialistas en dormir. Bloquea ronquidos y ruidos. Silicona ultrasuave para dormir de lado.', specs: {'Cancelación': '-28dB Pasiva', 'Material': 'Silicona Médica', 'Batería': '24 Horas'} },
+            { id: 9, cat: 'power', name: 'POWERBANK 15K', sku: 'C4013', price: '$527', img: 'c4013.png', desc: 'Poder Dragón 15,000mAh. Carga inalámbrica de 15W y cables integrados.', specs: {'Capacidad': '15,000 mAh', 'Wireless': '15W Max', 'LCD': 'Pantalla Digital'} },
+            { id: 10, cat: 'power', name: 'POWERBANK 10K', sku: 'C4014', price: '$480', img: 'c4014.png', desc: 'Del tamaño de una tarjeta. Portabilidad máxima con 10,000mAh y cables integrados.', specs: {'Capacidad': '10,000 mAh', 'Plug': 'AC Integrado', 'Peso': 'Ultra ligero'} },
+            { id: 11, cat: 'bocinas', name: 'BOCINA MAGNÉTICA', sku: 'S1048', price: '$199', img: 'S1048.png', desc: 'Imán N52 Pro de neodimio. Se adhiere a cualquier teléfono. Luces RGB y sonido 360°.', specs: {'Imán': 'N52 Pro', 'Luz': 'RGB 10M Colores', 'Conexión': 'TWS Estéreo'} }
+        ];
+
+        function render(items) {
+            const grid = document.getElementById('main-catalog');
+            grid.innerHTML = items.map(p => `
+                <div class="product-card" onclick="openDetail(${p.id})">
+                    <img src="${p.img}" class="product-img" onerror="this.src='https://via.placeholder.com/200?text=IMENSO'">
+                    <div style="font-size:10px; opacity:0.5;">IMS-${p.sku}</div>
+                    <div class="product-name">${p.name}</div>
+                    <div class="product-price">${p.price}</div>
+                </div>
+            `).join('');
+        }
+
+        function applyFilter(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            render(cat === 'todos' ? inventory : inventory.filter(x => x.cat === cat));
+        }
+
+        function openDetail(id) {
+            const p = inventory.find(x => x.id === id);
+            const content = document.getElementById('overlay-content');
+            let specsHTML = '';
+            for (const [key, value] of Object.entries(p.specs)) {
+                specsHTML += `<tr><td>${key}</td><td>${value}</td></tr>`;
+            }
+            content.innerHTML = `
+                <div style="text-align:center;"><img src="${p.img}" style="width:100%; max-width:400px; mix-blend-mode:multiply;"></div>
+                <div>
+                    <h1 style="font-family:var(--font-display); font-size:60px; line-height:0.9;">${p.name}</h1>
+                    <p style="font-size:26px; color:var(--accent); font-weight:bold; margin:10px 0;">${p.price}</p>
+                    <p style="margin:20px 0; color:#444;">${p.desc}</p>
+                    <table class="specs-table">${specsHTML}</table>
+                    <a href="https://www.mercadolibre.com.mx/pagina/imensomex" target="_blank" class="buy-button">COMPRAR EN MERCADO LIBRE</a>
+                </div>
+            `;
+            document.getElementById('product-overlay').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDetail() {
+            document.getElementById('product-overlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        render(inventory);
+    </script>
+</body>
+</html>
