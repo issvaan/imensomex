@@ -19,7 +19,7 @@
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; padding: 40px 5%; }
         .product-card { background: var(--gray); padding: 20px; border-radius: 10px; cursor: pointer; transition: 0.3s; position: relative; }
         .product-card:hover { transform: translateY(-5px); background: #eee; }
-        .product-img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; }
+        .product-img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; mix-blend-mode: multiply; }
         .product-name { font-family: var(--font-display); font-size: 24px; }
         .product-price { color: var(--accent); font-weight: bold; font-size: 18px; }
         #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 2000; overflow-y: auto; padding: 120px 5% 60px; }
@@ -28,13 +28,13 @@
         .buy-now { display: block; background: #ffe600; color: black; text-align: center; padding: 18px; text-decoration: none; font-family: var(--font-display); font-size: 24px; margin-top: 30px; border-radius: 8px; }
         .specs-list { margin-top: 20px; font-size: 13px; list-style: none; }
         .specs-list li { padding: 8px 0; border-bottom: 1px solid #eee; }
-        @media (max-width: 768px) { .hero h1 { font-size: 60px; } }
+        @media (max-width: 768px) { .hero h1 { font-size: 60px; } .detail-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="nav-logo" onclick="location.reload()"><img src="IMENSO%20BLANCO.jpg" alt="IMENSO"></div>
+        <div class="nav-logo" onclick="window.location.href='index.html'"><img src="IMENSO%20BLANCO.jpg" alt="IMENSO"></div>
         <div style="font-size: 10px; letter-spacing: 2px;">MEXICO STORE</div>
     </nav>
 
@@ -60,16 +60,16 @@
     <script>
         const data = [
             { id: 1, cat: 'audifonos', name: 'AUDÍFONO PRO 5.4', sku: 'E2008', price: '$209', img: 'e2008.png', desc: 'Desempeño Premium con Bluetooth 5.4. Alcance estable de 10m y sonido Hi-Fi.', specs: ['BT 5.4 Stable', 'Driver 13mm Hi-Fi', '20h Batería Total'] },
-            { id: 2, cat: 'audifonos', name: 'TWS HD COMPACT', sku: 'E2009', price: '$148', img: 'e2009.png', desc: 'Textura de piel premium. Conexión inteligente con IA de mejora de voz.', specs: ['Carga Flash (10m=2h)', '25h Batería', 'AI Voice Pickup'] },
-            { id: 3, cat: 'audifonos', name: 'ANC + ENC IN-EAR', sku: 'E2010', price: '$189', img: 'e2010.png', desc: 'Cancelación activa de ruido -25dB. Experiencia Dolby Atmos®.', specs: ['ANC + ENC (-25dB)', 'Dolby Atmos® Support', '25h Autonomía'] },
-            { id: 4, cat: 'audifonos', name: 'OPEN-EAR SPORT', sku: 'E2011', price: '$266', img: 'e2011.png', desc: 'Máximo confort deportivo IPX5. No intraural para mayor seguridad.', specs: ['IPX5 Waterproof', 'Latencia 0.05s', 'Diseño Open-Ear'] },
-            { id: 5, cat: 'audifonos', name: 'LONG BATTERY TWS', sku: 'E2012', price: '$269', img: 'e2012.png', desc: 'Estuche de aleación de aluminio. Sonido cinemático envolvente.', specs: ['Driver 17mm Composite', 'Aluminium Alloy Case', '30h Batería'] },
-            { id: 6, cat: 'audifonos', name: 'ENC SPORT & WORK', sku: 'E2013', price: '$298', img: 'e2013.png', desc: 'Tecnología Beamforming que reduce 98% las fugas de sonido.', specs: ['IPX4 Sweatproof', 'Titanium Driver 10mm', 'Peso Pluma 28g'] },
-            { id: 7, cat: 'audifonos', name: 'CLIP-ON SERIES', sku: 'E2014', price: '$315', img: 'E2014NEGRO.png', desc: 'Innovación que evita fatiga auditiva. Diseño aerodinámico clip-on.', specs: ['40h Batería Total', 'Clip-on Confort', 'Air Conduction Tech'] },
-            { id: 8, cat: 'audifonos', name: 'SLEEP IN-EAR', sku: 'E2015', price: '$329', img: 'E2015.png', desc: 'Silicona médica ultrasuave. Bloquea ronquidos y ruidos externos.', specs: ['Sleep Design Side-Sleep', '-28dB Passive ANC', 'Medical Grade Silicone'] },
-            { id: 9, cat: 'power', name: 'POWERBANK 15K', sku: 'C4013', price: '$527', img: 'c4013.png', desc: 'Poder Dragón 15,000mAh. Carga inalámbrica 15W y pantalla LCD.', specs: ['15,000 mAh Real', 'Wireless 15W Max', 'Dual 22.5W Output'] },
-            { id: 10, cat: 'power', name: 'POWERBANK 10K', sku: 'C4014', price: '$480', img: 'c4014.png', desc: 'Tamaño tarjeta de crédito. Incluye cables Lightning y USB-C.', specs: ['10,000 mAh Compact', 'Built-in Cables', 'Digital Display'] },
-            { id: 11, cat: 'bocinas', name: 'BOCINA MAGNÉTICA', sku: 'S1048', price: '$199', img: 'S1048.png', desc: 'Imán N52 Pro de neodimio. Luces RGB y sonido estéreo 360°.', specs: ['Neodymium N52 Magnet', 'RGB 10M Colors', 'TWS Stereo Link'] }
+            { id: 2, cat: 'audifonos', name: 'TWS HD COMPACT', sku: 'E2009', price: '$148', img: 'e2009.png', desc: 'Textura de piel premium con detalles metálicos. IA de mejora de voz.', specs: ['Carga Flash (10m=2h)', '25h Batería', 'AI Voice Pickup'] },
+            { id: 3, cat: 'audifonos', name: 'ANC + ENC IN-EAR', sku: 'E2010', price: '$189', img: 'e2010.png', desc: 'Cancelación activa de ruido -25dB. Sonido cinematográfico Dolby Atmos®.', specs: ['ANC + ENC (-25dB)', 'Dolby Atmos® Support', '25h Autonomía'] },
+            { id: 4, cat: 'audifonos', name: 'OPEN-EAR SPORT', sku: 'E2011', price: '$266', img: 'e2011.png', desc: 'Confort deportivo IPX5. No intraural para mayor seguridad y conciencia ambiental.', specs: ['IPX5 Waterproof', 'Latencia 0.05s', 'Diseño Open-Ear'] },
+            { id: 5, cat: 'audifonos', name: 'LONG BATTERY TWS', sku: 'E2012', price: '$269', img: 'e2012.png', desc: 'Estuche de aleación de aluminio. Sonido envolvente basado en proporción áurea.', specs: ['Driver 17mm Composite', 'Aluminium Alloy Case', '30h Batería'] },
+            { id: 6, cat: 'audifonos', name: 'ENC SPORT & WORK', sku: 'E2013', price: '$298', img: 'e2013.png', desc: 'Tecnología Beamforming que reduce 98% las fugas de sonido. Ideal para oficinas.', specs: ['IPX4 Sweatproof', 'Titanium Driver 10mm', 'Peso Pluma 28g'] },
+            { id: 7, cat: 'audifonos', name: 'CLIP-ON SERIES', sku: 'E2014', price: '$315', img: 'E2014NEGRO.png', desc: 'Innovación que evita fatiga auditiva. Diseño aerodinámico que no entra al canal.', specs: ['40h Batería Total', 'Clip-on Confort', 'Air Conduction Tech'] },
+            { id: 8, cat: 'audifonos', name: 'SLEEP IN-EAR', sku: 'E2015', price: '$329', img: 'E2015.png', desc: 'Silicona médica ultrasuave. Bloquea ronquidos. Perfectos para dormir de lado.', specs: ['Sleep Design Side-Sleep', '-28dB Passive ANC', 'Medical Grade Silicone'] },
+            { id: 9, cat: 'power', name: 'POWERBANK 15K', sku: 'C4013', price: '$527', img: 'c4013.png', desc: 'Poder Dragón 15,000mAh. Carga inalámbrica 15W y pantalla LCD digital.', specs: ['15,000 mAh Real', 'Wireless 15W Max', 'Dual 22.5W Output'] },
+            { id: 10, cat: 'power', name: 'POWERBANK 10K', sku: 'C4014', price: '$480', img: 'c4014.png', desc: 'Tamaño tarjeta de crédito. Incluye cables Lightning y USB-C integrados.', specs: ['10,000 mAh Compact', 'Built-in Cables', 'Digital Display'] },
+            { id: 11, cat: 'bocinas', name: 'BOCINA MAGNÉTICA', sku: 'S1048', price: '$199', img: 'S1048.png', desc: 'Imán N52 Pro de neodimio. Se adhiere al teléfono. Luces RGB y sonido 360°.', specs: ['Neodymium N52 Magnet', 'RGB 10M Colors', 'TWS Stereo Link'] }
         ];
 
         function draw(list) {
@@ -105,6 +105,9 @@
             `;
             document.getElementById('overlay').style.display = 'block';
             document.body.style.overflow = 'hidden';
+            
+            // MAGIC: Añadir estado al historial para el botón "Atrás"
+            history.pushState({view: 'product'}, '');
             window.scrollTo(0,0);
         }
 
@@ -112,6 +115,11 @@
             document.getElementById('overlay').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
+
+        // Detectar botón "Atrás" del navegador
+        window.onpopstate = function(event) {
+            closeMe();
+        };
 
         draw(data);
     </script>
