@@ -388,11 +388,29 @@
   </div>
 </div>
 
+
 <style>
 @keyframes ticker {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+.product-img-main {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 20px;
+  }
+  .color-variants {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+  }
+  .color-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
 </style>
 
 <div class="stats">
@@ -411,20 +429,75 @@
   </div>
 
   <div class="products-grid">
+
     <div class="product-card">
       <div class="product-badge">Top Ventas</div>
-      <div class="product-sku" style="font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); margin-bottom: 10px;">IMS-E2008</div>
-      <span style="font-size: 40px; display: block; margin-bottom: 15px;">🎧</span>
+      <div class="product-sku">IMS-E2008</div>
+      <img src="e2008.png" alt="E2008" class="product-img-main">
       <div class="product-name">AUDÍFONO PRO 5.4</div>
-      <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">Sonido cristalino con la latencia más baja del mercado.</p>
-      <div class="product-specs">
-        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--gray-border); padding: 8px 0;">
-            <span style="font-size: 10px; text-transform: uppercase; color: var(--text-muted);">Tipo</span>
-            <span class="spec-val">In-Ear HD</span>
-        </div>
+      <p class="product-desc">Sonido claro y potente. El estándar de calidad IMENSO.</p>
+      <div class="color-variants">
+        <span class="color-dot" title="Blanco" style="background: #ffffff; border: 1px solid #ddd;"></span>
+        <span class="color-dot" title="Negro" style="background: #000000;"></span>
       </div>
       <div class="product-price">$209</div>
     </div>
+
+    <div class="product-card">
+      <div class="product-sku">IMS-E2012</div>
+      <img src="e2012.png" alt="E2012" class="product-img-main">
+      <div class="product-name">TWS LARGA DURACIÓN</div>
+      <p class="product-desc">Diseño ergonómico con batería de alto rendimiento.</p>
+      <div class="color-variants">
+        <span class="color-dot" title="Negro" style="background: #000;"></span>
+        <span class="color-dot" title="Azul" style="background: #0000ff;"></span>
+        <span class="color-dot" title="Naranja" style="background: #ff8c00;"></span>
+      </div>
+      <div class="product-price">$269</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-sku">IMS-E2015</div>
+      <img src="E2015.png" alt="E2015" class="product-img-main">
+      <div class="product-name">SLEEP IN-EAR</div>
+      <p class="product-desc">Ultra compactos, diseñados para el descanso sin presión.</p>
+      <div class="color-variants">
+        <span class="color-dot" title="Beige" style="background: #f5f5dc; border: 1px solid #ddd;"></span>
+        <span class="color-dot" title="Lila" style="background: #db7093;"></span>
+        <span class="color-dot" title="Negro" style="background: #000;"></span>
+      </div>
+      <div class="product-price">$329</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-badge" style="background: var(--black);">Poder Dragon</div>
+      <div class="product-sku">IMS-C4013</div>
+      <img src="c4013.png" alt="C4013" class="product-img-main">
+      <div class="product-name">POWERBANK 15K</div>
+      <p class="product-desc">Carga súper rápida de 15,000 mAh. Energía total.</p>
+      <div class="color-variants">
+        <span class="color-dot" title="Blanco" style="background: #fff; border: 1px solid #ddd;"></span>
+        <span class="color-dot" title="Morado" style="background: #4b0082;"></span>
+        <span class="color-dot" title="Negro" style="background: #000;"></span>
+      </div>
+      <div class="product-price">$527</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-sku">IMS-S1048</div>
+      <img src="S1048.png" alt="S1048" class="product-img-main">
+      <div class="product-name">MINI BOCINA MAG</div>
+      <p class="product-desc">Base magnética y subwoofer. Potencia en miniatura.</p>
+      <div class="color-variants">
+        <span class="color-dot" title="Azul" style="background: #00f;"></span>
+        <span class="color-dot" title="Blanco" style="background: #fff; border: 1px solid #ddd;"></span>
+        <span class="color-dot" title="Negro" style="background: #000;"></span>
+        <span class="color-dot" title="Verde" style="background: #2ecc71;"></span>
+      </div>
+      <div class="product-price">$199</div>
+    </div>
+
+</div>
 
     <div class="product-card">
       <div class="product-badge" style="background: var(--black);">Poder Dragon</div>
@@ -470,4 +543,5 @@
 </footer>
 
 </body>
+
 </html>
