@@ -28,97 +28,62 @@
             border-bottom: 1px solid #eee;
         }
         .nav-logo img { height: 45px; cursor: pointer; }
-        .nav-links a { text-decoration: none; color: var(--black); margin-left: 20px; font-size: 13px; text-transform: uppercase; }
 
         /* HERO */
-        .hero { height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; margin-top: 60px; }
-        .hero h1 { font-family: var(--font-display); font-size: clamp(50px, 10vw, 120px); line-height: 0.9; }
+        .hero { height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; margin-top: 80px; }
+        .hero h1 { font-family: var(--font-display); font-size: clamp(50px, 10vw, 100px); line-height: 0.9; }
 
-        /* CATEGORÍAS (RESTAURADA) */
-        .categories-bar { display: flex; justify-content: center; gap: 20px; padding: 20px; background: var(--gray); overflow-x: auto; }
-        .cat-item { padding: 10px 20px; background: white; border-radius: 20px; font-size: 12px; cursor: pointer; white-space: nowrap; border: 1px solid #ddd; }
-        .cat-item:hover { background: var(--black); color: white; }
+        /* CATEGORÍAS FUNCIONALES */
+        .categories-bar { display: flex; justify-content: center; gap: 15px; padding: 20px; background: var(--gray); position: sticky; top: 75px; z-index: 900; }
+        .cat-item { padding: 8px 20px; background: white; border-radius: 20px; font-size: 11px; cursor: pointer; border: 1px solid #ddd; transition: 0.3s; }
+        .cat-item.active { background: var(--black); color: white; border-color: var(--black); }
 
         /* GRID PRODUCTOS */
-        .section-title { font-family: var(--font-display); font-size: 32px; padding: 40px 5% 20px; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; padding: 0 5% 100px; }
+        .section-title { font-family: var(--font-display); font-size: 32px; padding: 40px 5% 10px; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; padding: 20px 5% 100px; }
         
         .product-card { 
             background: var(--gray); padding: 20px; border-radius: 12px; 
             cursor: pointer; transition: 0.3s; position: relative;
         }
         .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .product-img-main { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; }
-        .product-name { font-family: var(--font-display); font-size: 20px; }
-        .product-price { color: var(--accent); font-weight: bold; }
+        .product-img-main { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; mix-blend-mode: multiply; }
+        .product-name { font-family: var(--font-display); font-size: 20px; margin-bottom: 5px; }
+        .product-price { color: var(--accent); font-weight: bold; font-size: 18px; }
 
-        /* CAPA DE DETALLE (EL EFECTO QUE BUSCAS) */
+        /* CAPA DE DETALLE */
         #vista-producto {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: white; z-index: 2000; overflow-y: auto; padding: 50px 5%;
         }
-        .btn-close { position: fixed; top: 20px; right: 20px; background: var(--black); color: white; border: none; padding: 10px 20px; cursor: pointer; z-index: 2101; }
-        
-        .detalle-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .shop-btn { display: block; background: #ffe600; color: black; text-align: center; padding: 15px; text-decoration: none; font-family: var(--font-display); font-size: 20px; margin-top: 20px; border-radius: 5px; }
+        .btn-close { position: fixed; top: 20px; right: 20px; background: var(--black); color: white; border: none; padding: 10px 20px; cursor: pointer; z-index: 2101; font-family: var(--font-mono); }
+        .detalle-container { max-width: 1000px; margin: 40px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .shop-btn { display: block; background: #ffe600; color: black; text-align: center; padding: 18px; text-decoration: none; font-family: var(--font-display); font-size: 24px; margin-top: 25px; border-radius: 8px; }
+
+        @media (max-width: 768px) { .detalle-container { grid-template-columns: 1fr; text-align: center; } }
     </style>
 </head>
 <body>
 
     <nav>
         <a href="#" class="nav-logo"><img src="IMENSO%20BLANCO.jpg" alt="IMENSO"></a>
-        <div class="nav-links">
-            <a href="#productos">Catálogo</a>
-            <a href="https://www.mercadolibre.com.mx/pagina/imensomex" target="_blank">Tienda</a>
-        </div>
+        <div style="font-size: 10px; letter-spacing: 2px;">MEXICO CITY</div>
     </nav>
 
     <header class="hero">
-        <p style="letter-spacing: 3px;">IMENSO EVOLUTION</p>
-        <h1>AUDIO & POWER<br>2026</h1>
+        <p style="letter-spacing: 5px; font-size: 12px; margin-bottom: 10px;">EVOLUTION OF SOUND</p>
+        <h1>CATÁLOGO 2026</h1>
     </header>
 
     <div class="categories-bar">
-        <div class="cat-item">TODOS</div>
-        <div class="cat-item">AUDÍFONOS</div>
-        <div class="cat-item">POWERBANKS</div>
-        <div class="cat-item">BOCINAS</div>
+        <div class="cat-item active" onclick="filtrar('todos')">TODOS</div>
+        <div class="cat-item" onclick="filtrar('audifonos')">AUDÍFONOS</div>
+        <div class="cat-item" onclick="filtrar('power')">POWER</div>
+        <div class="cat-item" onclick="filtrar('bocinas')">BOCINAS</div>
     </div>
-
-    <h2 class="section-title" id="productos">PRODUCTOS DESTACADOS</h2>
     
-    <div class="products-grid">
-        <div class="product-card" onclick="verProducto('E2008')">
-            <img src="e2008.png" class="product-img-main">
-            <div class="product-name">AUDÍFONO PRO 5.4</div>
-            <div class="product-price">$209</div>
+    <div class="products-grid" id="main-grid">
         </div>
-        <div class="product-card" onclick="verProducto('E2013')">
-            <img src="e2013.png" class="product-img-main">
-            <div class="product-name">ENC SPORT & WORK</div>
-            <div class="product-price">$298</div>
-        </div>
-        <div class="product-card" onclick="verProducto('E2014')">
-            <img src="E2014NEGRO.png" class="product-img-main">
-            <div class="product-name">CLIP-ON SERIES</div>
-            <div class="product-price">$315</div>
-        </div>
-        <div class="product-card" onclick="verProducto('E2015')">
-            <img src="E2015.png" class="product-img-main">
-            <div class="product-name">SLEEP IN-EAR</div>
-            <div class="product-price">$329</div>
-        </div>
-        <div class="product-card" onclick="verProducto('C4013')">
-            <img src="c4013.png" class="product-img-main">
-            <div class="product-name">POWERBANK 15K</div>
-            <div class="product-price">$527</div>
-        </div>
-        <div class="product-card" onclick="verProducto('S1048')">
-            <img src="S1048.png" class="product-img-main">
-            <div class="product-name">BOCINA MAGNÉTICA</div>
-            <div class="product-price">$199</div>
-        </div>
-    </div>
 
     <div id="vista-producto">
         <button class="btn-close" onclick="cerrarProducto()">VOLVER</button>
@@ -126,36 +91,33 @@
     </div>
 
     <script>
-        const productosInfo = {
-            'E2008': { name: 'AUDÍFONO PRO 5.4', price: '$209', desc: 'Chip 5.4 de alta fidelidad.', specs: ['Bluetooth 5.4', '30h Batería'], img: 'e2008.png' },
-            'E2013': { name: 'ENC SPORT & WORK', price: '$298', desc: 'Cancelación de ruido ambiental superior.', specs: ['Modo ENC', 'Resistente al sudor'], img: 'e2013.png' },
-            'E2014': { name: 'CLIP-ON SERIES', price: '$315', desc: 'Diseño ultra-cómodo de clip para oreja.', specs: ['Open Ear Design', 'Audio Premium'], img: 'E2014NEGRO.png' },
-            'E2015': { name: 'SLEEP IN-EAR', price: '$329', desc: 'Diseñados para descansar sin presión.', specs: ['Soft Touch', 'Passive ANC'], img: 'E2015.png' },
-            'C4013': { name: 'POWERBANK 15K', price: '$527', desc: 'Energía inalámbrica de alta capacidad.', specs: ['15,000 mAh', 'Wireless'], img: 'c4013.png' },
-            'S1048': { name: 'BOCINA MAGNÉTICA', price: '$199', desc: 'Base con imán industrial.', specs: ['Mag Base', 'TWS Link'], img: 'S1048.png' }
-        };
+        const productos = [
+            { id: 'E2008', cat: 'audifonos', name: 'AUDÍFONO PRO 5.4', price: '$209', img: 'e2008.png', desc: 'Audio Hi-Fi con Bluetooth 5.4 de última generación.', specs: ['BT 5.4', '30h Batería', 'Llamadas HD'] },
+            { id: 'E2009', cat: 'audifonos', name: 'TWS HD COMPACT', price: '$148', img: 'e2009.png', desc: 'Diseño minimalista con graves profundos.', specs: ['Compacto', 'Carga USB-C', 'Touch Control'] },
+            { id: 'E2010', cat: 'audifonos', name: 'ANC + ENC IN-EAR', price: '$189', img: 'e2010.png', desc: 'Cancelación de ruido activa para mayor claridad.', specs: ['ANC/ENC', 'Modo Gamer', 'Waterproof'] },
+            { id: 'E2011', cat: 'audifonos', name: 'OPEN-EAR BT 5.4', price: '$266', img: 'e2011.png', desc: 'Escucha tu música sin perder contacto con el entorno.', specs: ['Open Ear', 'Seguridad Sport', 'BT 5.4'] },
+            { id: 'E2012', cat: 'audifonos', name: 'LONG BATTERY TWS', price: '$269', img: 'e2012.png', desc: 'Batería de larga duración para viajes largos.', specs: ['45h Uso Total', 'Dual Connect', 'Hi-Res Audio'] },
+            { id: 'E2013', cat: 'audifonos', name: 'ENC SPORT & WORK', price: '$298', img: 'e2013.png', desc: 'Llamadas perfectas incluso en exteriores ruidosos.', specs: ['ENC Dual', 'Ergonómico', 'Fast Charge'] },
+            { id: 'E2014', cat: 'audifonos', name: 'CLIP-ON SERIES', price: '$315', img: 'E2014NEGRO.png', desc: 'El futuro del confort. No entra en el canal auditivo.', specs: ['Clip-on', 'No Fatigue', 'Premium Sound'] },
+            { id: 'E2015', cat: 'audifonos', name: 'SLEEP IN-EAR', price: '$329', img: 'E2015.png', desc: 'Ultra delgados, perfectos para dormir con ellos.', specs: ['Sleep Design', 'Silicona Médica', 'Passive ANC'] },
+            { id: 'C4013', cat: 'power', name: 'POWERBANK 15K', price: '$527', img: 'c4013.png', desc: 'Energía inalámbrica de alta capacidad.', specs: ['15,000 mAh', 'Wireless', 'Fast Output'] },
+            { id: 'C4014', cat: 'power', name: 'POWERBANK 10K', price: '$480', img: 'c4014.png', desc: 'Compacta y elegante para el uso diario.', specs: ['10,000 mAh', 'Pocket Size', 'USB-C / Lightning'] },
+            { id: 'S1048', cat: 'bocinas', name: 'BOCINA MAGNÉTICA', price: '$199', img: 'S1048.png', desc: 'Pégala en cualquier superficie metálica.', specs: ['Base Imán', 'Subwoofer', 'TWS Link'] }
+        ];
 
-        function verProducto(id) {
-            const p = productosInfo[id];
-            const div = document.getElementById('detalle-contenido');
-            div.innerHTML = `
-                <div style="text-align:center;"><img src="${p.img}" style="width:100%; max-width:400px;"></div>
-                <div>
-                    <h1 style="font-family:var(--font-display); font-size:50px;">${p.name}</h1>
-                    <p style="font-size:24px; color:var(--accent); font-weight:bold;">${p.price}</p>
-                    <p style="margin:20px 0;">${p.desc}</p>
-                    <ul>${p.specs.map(s => `<li>• ${s}</li>`).join('')}</ul>
-                    <a href="https://www.mercadolibre.com.mx/pagina/imensomex" target="_blank" class="shop-btn">COMPRAR EN MERCADO LIBRE</a>
-                </div>
-            `;
-            document.getElementById('vista-producto').style.display = 'block';
-            document.body.style.overflow = 'hidden';
+        function renderProducts(filter = 'todos') {
+            const grid = document.getElementById('main-grid');
+            grid.innerHTML = '';
+            
+            productos.forEach(p => {
+                if(filter === 'todos' || p.cat === filter) {
+                    grid.innerHTML += `
+                        <div class="product-card" onclick="verProducto('${p.id}')">
+                            <img src="${p.img}" class="product-img-main">
+                            <div class="product-name">${p.name}</div>
+                            <div class="product-price">${p.price}</div>
+                        </div>
+                    `;
+                }
+            });
         }
-
-        function cerrarProducto() {
-            document.getElementById('vista-producto').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    </script>
-</body>
-</html>
