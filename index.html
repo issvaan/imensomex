@@ -40,7 +40,7 @@
   .hero-desc { font-size: 16px; line-height: 1.7; color: #aaa; max-width: 400px; margin-bottom: 48px; }
   .hero-cta { display: inline-flex; align-items: center; gap: 12px; background: var(--accent); color: var(--white); text-decoration: none; padding: 16px 32px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; transition: 0.2s; width: fit-content; }
   
-  /* HERO RIGHT - AHORA 100% NEGRO */
+  /* HERO RIGHT - FONDO NEGRO CON LOGO JPG */
   .hero-right { position: relative; display: flex; align-items: center; justify-content: center; background: var(--black); overflow: hidden; }
   .hero-visual { width: 80%; max-width: 450px; display: flex; align-items: center; justify-content: center; position: relative; }
   
@@ -66,19 +66,14 @@
   .section-title { font-family: var(--font-display); font-size: 56px; letter-spacing: 2px; }
   .section-count { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 2px; }
 
-  /* PRODUCTS GRID (CON CENTRADO PARA POCOS PRODUCTOS) */
+  /* FILTER CONTROLS */
   .filter-controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; }
   .filter-btn { padding: 10px 20px; background: var(--gray2); color: var(--white); border: none; font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
   .filter-btn.active, .filter-btn:hover { background: var(--accent); }
 
-  .products-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-    gap: 2px; 
-    justify-content: center; 
-  }
-  
-  .product-card { background: var(--gray); padding: 40px; position: relative; overflow: hidden; cursor: pointer; transition: 0.3s; }
+  /* PRODUCTS GRID (FLEXBOX CENTRADO) */
+  .products-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+  .product-card { background: var(--gray); padding: 40px; position: relative; overflow: hidden; cursor: pointer; transition: 0.3s; flex: 1 1 320px; max-width: 400px; }
   .product-card:hover { background: var(--gray2); }
   .product-img-wrap { width: 100%; height: 220px; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; padding: 20px; }
   .product-img { max-width: 100%; max-height: 100%; object-fit: contain; }
@@ -95,16 +90,21 @@
   /* MODAL DETAIL */
   #details { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10,10,10,0.98); z-index: 2000; overflow-y: auto; backdrop-filter: blur(10px); }
   .details-content { max-width: 1100px; margin: 80px auto; padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; background: var(--gray); border: 1px solid var(--gray2); position: relative; }
-  .close-btn { position: absolute; top: 20px; right: 30px; font-size: 35px; cursor: pointer; color: var(--white); border: none; background: none; }
-  .details-img-box { background: rgba(255,255,255,0.03); padding: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .close-btn { position: absolute; top: 20px; right: 30px; font-size: 35px; cursor: pointer; color: var(--white); border: none; background: none; z-index: 2100; transition: 0.3s; }
+  .close-btn:hover { color: var(--accent); transform: scale(1.1); }
+  
+  /* Mantener la imagen fija al hacer scroll */
+  .details-img-container { position: sticky; top: 40px; height: fit-content; }
+  .details-img-box { background: rgba(255,255,255,0.03); padding: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
   .details-img { width: 100%; max-height: 400px; object-fit: contain; }
+  
   .details-info h1 { font-family: var(--font-display); font-size: 50px; margin-bottom: 10px; line-height: 1; letter-spacing: 1px; }
   .price-big { font-family: var(--font-display); font-size: 40px; color: var(--accent); margin-bottom: 20px; }
   .details-info p { font-size: 15px; color: #aaa; line-height: 1.6; margin-bottom: 30px; }
   .modal-specs { list-style: none; padding: 0; border-top: 1px solid var(--gray2); padding-top: 20px; }
   .modal-specs li { margin-bottom: 15px; font-family: var(--font-mono); font-size: 12px; color: #ccc; }
   .modal-specs li b { color: var(--accent2); margin-right: 10px; }
-  .btn-buy { display: inline-block; background: var(--accent); color: var(--white); padding: 18px 40px; text-decoration: none; font-family: var(--font-mono); font-size: 14px; margin-top: 20px; font-weight: bold; border: 1px solid var(--accent); transition: 0.3s; }
+  .btn-buy { display: inline-block; width: 100%; text-align: center; background: var(--accent); color: var(--white); padding: 18px 40px; text-decoration: none; font-family: var(--font-mono); font-size: 14px; margin-top: 20px; font-weight: bold; border: 1px solid var(--accent); transition: 0.3s; }
   .btn-buy:hover { background: transparent; color: var(--accent); }
 
   /* BRAND SECTION */
@@ -118,14 +118,7 @@
   .brand-value-text h4 { font-family: var(--font-display); font-size: 22px; letter-spacing: 1px; margin-bottom: 6px; }
   .brand-value-text p { font-size: 13px; color: #888; line-height: 1.6; }
 
-  /* SHOP CTA */
-  .shop-cta { display: flex; align-items: center; justify-content: space-between; padding: 60px; background: var(--gray); gap: 40px; border-top: 1px solid var(--gray2); }
-  .shop-cta-text h2 { font-family: var(--font-display); font-size: 52px; letter-spacing: 2px; margin-bottom: 8px; }
-  .shop-cta-text p { font-size: 15px; color: #888; }
-  .shop-btn { display: inline-flex; align-items: center; gap: 12px; background: #ffe600; color: #000; text-decoration: none; padding: 20px 40px; font-family: var(--font-display); font-size: 22px; letter-spacing: 2px; white-space: nowrap; transition: 0.2s; }
-  .shop-btn:hover { transform: scale(1.02); }
-
-  /* FOOTER RESTAURADO */
+  /* FOOTER */
   footer { padding: 60px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; background: var(--black); }
   .footer-logo { font-family: var(--font-display); font-size: 36px; letter-spacing: 4px; color: var(--white); }
   .footer-links { display: flex; gap: 32px; list-style: none; }
@@ -137,10 +130,11 @@
     .hero { grid-template-columns: 1fr; }
     .hero-right { display: none; }
     .categories { grid-template-columns: 1fr; }
-    .products-grid { grid-template-columns: 1fr; }
-    .details-content { grid-template-columns: 1fr; margin: 20px; padding: 30px 20px; }
+    .products-grid { flex-direction: column; align-items: center; }
+    .product-card { max-width: 100%; }
+    .details-content { grid-template-columns: 1fr; margin: 20px; padding: 40px 20px; }
+    .details-img-container { position: static; }
     .brand-section { grid-template-columns: 1fr; }
-    .shop-cta { flex-direction: column; text-align: center; padding: 40px 20px; }
     footer { flex-direction: column; gap: 24px; text-align: center; }
   }
 </style>
@@ -165,7 +159,7 @@
   </div>
   <div class="hero-right">
     <div class="hero-visual">
-      <img src="imensologonegro.jpg" alt="IMENSO Logo" style="width: 80%; height: auto; position: relative; z-index: 10;">
+      <img src="imensologoblanco.jpg" alt="IMENSO Logo" style="width: 80%; height: auto; position: relative; z-index: 10;">
     </div>
   </div>
 </section>
@@ -256,16 +250,6 @@
   </div>
 </section>
 
-<div class="shop-cta" id="tienda">
-  <div class="shop-cta-text">
-    <h2>COMPRA EN<br>MERCADO LIBRE</h2>
-    <p>Envío express disponible · Garantía incluida · Pago en meses sin intereses</p>
-  </div>
-  <a href="https://www.mercadolibre.com.mx/pagina/imensomex" target="_blank" class="shop-btn">
-    🛒 Ver tienda Imenso
-  </a>
-</div>
-
 <footer>
   <div class="footer-logo">IMENSO</div>
   <ul class="footer-links">
@@ -284,6 +268,7 @@
 </div>
 
 <script>
+    // NOTA: Se agregó el campo "tiktok" al producto 10 (C4014) con el ID del video
     const products = [
         { id: 1, cat: 'audifonos', name: 'Audífono Pro 5.4', sku: 'E2008', price: '$209', img: 'e2008.png', badge: '⭐ Top Ventas', ml: 'https://www.mercadolibre.com.mx/audifono-inalambrico-bluetooth-54-sonido-claro-y-potente-bateria-de-larga-duracion-microfono-integrado-para-musica-y-llamadas-todo-el-dia-gamer-auriculares-imenso-ims-e2008-manos-libres/p/MLM56384685', desc: 'Bluetooth 5.4 estable. Sonido Hi-Fi puro con driver de 13mm y graves profundos.', specs: ['Conectividad: BT 5.4', 'Autonomía: 20 Horas', 'Carga: USB-C Fast'] },
         { id: 2, cat: 'audifonos', name: 'TWS HD Compact', sku: 'E2009', price: '$148', img: 'e2009.png', ml: 'https://www.mercadolibre.com.mx/audifonos-inalambricos-bluetooth-54-con-microfono-cancelacion-de-ruido-en-llamadas-13-mm-para-graves-profundos-y-sonido-hd-ideales-para-musica-peliculas-y-uso-imenso-ims-e2009-color-blanco/p/MLM55774799', desc: 'Elegancia y potencia. Estuche con acabado en piel y tecnología AI para llamadas.', specs: ['Material: Textura Piel', 'Carga: 10m = 2h', 'Batería: 25 Horas'] },
@@ -294,7 +279,10 @@
         { id: 7, cat: 'audifonos', name: 'Clip-On Series', sku: 'E2014', price: '$229', img: 'e2014negro.png', ml: 'https://www.mercadolibre.com.mx/audifonos-inalambricos-de-clip-ear-diseno-comodo-y-elegante-sonido-estereo-claro-llamadas-y-musica-sin-complicaciones-auriculares-gamer-bluetooth-imenso-ims-e2014-manos-libres/p/MLM56499537', desc: 'Comodidad absoluta. No entra en el canal auditivo, evitando fatiga tras horas de uso.', specs: ['Batería: 40 Horas', 'Audio: Air Conduction', 'Ajuste: Clip-Ear'] },
         { id: 8, cat: 'audifonos', name: 'Sleep In-Ear', sku: 'E2015', price: '$329', img: 'e2015.png', ml: 'https://www.mercadolibre.com.mx/audifonos-inalambricos-compactos-y-comodos-para-dormir-sonido-rico-con-diafragma-compuesto-cancelacion-fisica-de-ruido-auriculares-bluetooth-sin-presion-en-el-oido-ni-caidas-imenso-ims-e2015/p/MLM57547768', desc: 'Los más pequeños del mundo. Silicona médica suave para dormir sin molestias.', specs: ['Diseño: Side-Sleep', 'Material: Silicón Médico', 'Cancelación: -28dB'] },
         { id: 9, cat: 'power', name: 'Powerbank 15K', sku: 'C4013', price: '$549', img: 'c4013.png', badge: '⚡ Potente', ml: 'https://articulo.mercadolibre.com.mx/MLM-4192876702-power-bank-bateria-portatil-15000mah-carga-super-rapida-_JM', desc: 'Batería de alta densidad. Carga inalámbrica rápida y cables ocultos integrados.', specs: ['Capacidad: 15,000 mAh', 'Wireless: 15W', 'Pantalla: LCD Precisión'] },
-        { id: 10, cat: 'power', name: 'Powerbank 10K', sku: 'C4014', price: '$465.93', img: 'c4014.png', badge: '🏆 Best Seller', ml: 'https://www.mercadolibre.com.mx/power-bank-bateria-portatil-10000mah-carga-super-rapida-color-negro/p/MLM63778255', desc: 'Ultradelgada. Tamaño de una tarjeta de crédito. Incluye cables Lightning y USB-C.', specs: ['Capacidad: 10,000 mAh', 'Cables: Integrados', 'Diseño: Ultra-Slim'] },
+        
+        // AQUÍ SE AGREGÓ EL ID DE TIKTOK
+        { id: 10, cat: 'power', name: 'Powerbank 10K', sku: 'C4014', price: '$465.93', img: 'c4014.png', badge: '🏆 Best Seller', ml: 'https://www.mercadolibre.com.mx/power-bank-bateria-portatil-10000mah-carga-super-rapida-color-negro/p/MLM63778255', desc: 'Ultradelgada. Tamaño de una tarjeta de crédito. Incluye cables Lightning y USB-C.', specs: ['Capacidad: 10,000 mAh', 'Cables: Integrados', 'Diseño: Ultra-Slim'], tiktok: '7598691009807027476' },
+        
         { id: 11, cat: 'bocinas', name: 'Bocina Magnética', sku: 'S1048', price: '$199', img: 's1048.png', ml: 'https://www.mercadolibre.com.mx/mini-bocina-bluetooth-magnetica-subwoofer-altavoz-imenso-color-negro/p/MLM58592445', desc: 'Poder magnético N52. Pégala a tu teléfono. Sonido 360 y luces RGB dinámicas.', specs: ['Imán: Neodimio N52', 'Luz: RGB Dinámica', 'Sonido: TWS Link'] }
     ];
 
@@ -339,9 +327,23 @@
 
     function openDetails(id) {
         const p = products.find(x => x.id === id);
+        
+        // Bloque del video de TikTok (solo aparece si el producto tiene el ID configurado)
+        let tiktokHTML = '';
+        if (p.tiktok) {
+            tiktokHTML = `
+            <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--gray2);">
+                <div style="font-family:var(--font-mono); font-size:11px; color:var(--accent); letter-spacing:2px; margin-bottom:15px; text-transform:uppercase;">// En Acción</div>
+                <iframe src="https://www.tiktok.com/embed/v2/${p.tiktok}?lang=es-MX" width="100%" height="600" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 12px; background: var(--black);"></iframe>
+            </div>
+            `;
+        }
+
         document.getElementById('details-body').innerHTML = `
-            <div class="details-img-box">
-                <img src="${p.img}" class="details-img" onerror="this.src='https://via.placeholder.com/200?text=IMENSO'">
+            <div class="details-img-container">
+                <div class="details-img-box">
+                    <img src="${p.img}" class="details-img" onerror="this.src='https://via.placeholder.com/200?text=IMENSO'">
+                </div>
             </div>
             <div class="details-info">
                 <div style="font-family:var(--font-mono); font-size:12px; color:var(--text-muted); margin-bottom:10px; letter-spacing:2px;">IMS-${p.sku}</div>
@@ -350,6 +352,8 @@
                 <p>${p.desc}</p>
                 <ul class="modal-specs">${p.specs.map(s => `<li><b>•</b> ${s}</li>`).join('')}</ul>
                 <a href="${p.ml}" target="_blank" class="btn-buy">🛒 COMPRAR EN MERCADO LIBRE</a>
+                
+                ${tiktokHTML}
             </div>
         `;
         document.getElementById('details').style.display = 'block';
@@ -368,4 +372,3 @@
 
 </body>
 </html>
-
