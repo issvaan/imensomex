@@ -40,11 +40,10 @@
   .hero-desc { font-size: 16px; line-height: 1.7; color: #aaa; max-width: 400px; margin-bottom: 48px; }
   .hero-cta { display: inline-flex; align-items: center; gap: 12px; background: var(--accent); color: var(--white); text-decoration: none; padding: 16px 32px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; transition: 0.2s; width: fit-content; }
   
-  .hero-right { position: relative; display: flex; align-items: center; justify-content: center; background: var(--gray); overflow: hidden; }
-  .hero-visual { width: 70%; max-width: 400px; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #ff4d0020, transparent 60%), radial-gradient(circle at 70% 70%, #00d4ff15, transparent 60%), var(--gray2); display: flex; align-items: center; justify-content: center; position: relative; }
-  .hero-visual::after { content: ''; position: absolute; inset: -2px; border-radius: 50%; background: conic-gradient(var(--accent) 0deg, transparent 60deg, transparent 300deg, var(--accent) 360deg); z-index: -1; animation: rotate 8s linear infinite; }
-  @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
+  /* HERO RIGHT - AHORA 100% NEGRO */
+  .hero-right { position: relative; display: flex; align-items: center; justify-content: center; background: var(--black); overflow: hidden; }
+  .hero-visual { width: 80%; max-width: 450px; display: flex; align-items: center; justify-content: center; position: relative; }
+  
   /* TICKER */
   .ticker { background: var(--accent); padding: 12px 0; overflow: hidden; white-space: nowrap; border-top: 1px solid #222; }
   .ticker-inner { display: inline-block; animation: ticker 25s linear infinite; }
@@ -60,65 +59,89 @@
   .category-arrow { position: absolute; bottom: 30px; right: 30px; font-size: 24px; opacity: 0; transform: translateX(-10px); transition: 0.3s; color: var(--accent); }
   .category-card:hover .category-arrow { opacity: 1; transform: translateX(0); }
 
-  /* PRODUCTS GRID */
+  /* SECTIONS */
+  .section { padding: 100px 60px; }
+  .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; border-bottom: 1px solid #222; padding-bottom: 32px; }
+  .section-tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+  .section-title { font-family: var(--font-display); font-size: 56px; letter-spacing: 2px; }
+  .section-count { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 2px; }
+
+  /* PRODUCTS GRID (CON CENTRADO PARA POCOS PRODUCTOS) */
   .filter-controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; }
   .filter-btn { padding: 10px 20px; background: var(--gray2); color: var(--white); border: none; font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
   .filter-btn.active, .filter-btn:hover { background: var(--accent); }
 
-  .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2px; }
+  .products-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+    gap: 2px; 
+    justify-content: center; 
+  }
+  
   .product-card { background: var(--gray); padding: 40px; position: relative; overflow: hidden; cursor: pointer; transition: 0.3s; }
   .product-card:hover { background: var(--gray2); }
   .product-img-wrap { width: 100%; height: 220px; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; padding: 20px; }
   .product-img { max-width: 100%; max-height: 100%; object-fit: contain; }
   .product-name { font-family: var(--font-display); font-size: 28px; letter-spacing: 1px; margin-bottom: 12px; }
+  .product-desc { font-size: 13px; color: #888; line-height: 1.6; margin-bottom: 24px; height: 42px; overflow: hidden; }
   .product-price { font-family: var(--font-display); font-size: 36px; color: var(--accent); }
+  .product-badge { position: absolute; top: 20px; right: 20px; background: var(--accent); color: var(--white); font-family: var(--font-mono); font-size: 9px; letter-spacing: 1px; padding: 4px 8px; text-transform: uppercase; z-index: 2; }
+
+  .product-specs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+  .spec { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #333; }
+  .spec-key { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; }
+  .spec-val { font-family: var(--font-mono); font-size: 11px; color: var(--accent2); text-align: right; max-width: 60%; }
 
   /* MODAL DETAIL */
   #details { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10,10,10,0.98); z-index: 2000; overflow-y: auto; backdrop-filter: blur(10px); }
   .details-content { max-width: 1100px; margin: 80px auto; padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; background: var(--gray); border: 1px solid var(--gray2); position: relative; }
   .close-btn { position: absolute; top: 20px; right: 30px; font-size: 35px; cursor: pointer; color: var(--white); border: none; background: none; }
+  .details-img-box { background: rgba(255,255,255,0.03); padding: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
   .details-img { width: 100%; max-height: 400px; object-fit: contain; }
-  .btn-buy { display: inline-block; background: var(--accent); color: var(--white); padding: 18px 40px; text-decoration: none; font-family: var(--font-mono); font-size: 14px; margin-top: 20px; font-weight: bold; }
+  .details-info h1 { font-family: var(--font-display); font-size: 50px; margin-bottom: 10px; line-height: 1; letter-spacing: 1px; }
+  .price-big { font-family: var(--font-display); font-size: 40px; color: var(--accent); margin-bottom: 20px; }
+  .details-info p { font-size: 15px; color: #aaa; line-height: 1.6; margin-bottom: 30px; }
+  .modal-specs { list-style: none; padding: 0; border-top: 1px solid var(--gray2); padding-top: 20px; }
+  .modal-specs li { margin-bottom: 15px; font-family: var(--font-mono); font-size: 12px; color: #ccc; }
+  .modal-specs li b { color: var(--accent2); margin-right: 10px; }
+  .btn-buy { display: inline-block; background: var(--accent); color: var(--white); padding: 18px 40px; text-decoration: none; font-family: var(--font-mono); font-size: 14px; margin-top: 20px; font-weight: bold; border: 1px solid var(--accent); transition: 0.3s; }
+  .btn-buy:hover { background: transparent; color: var(--accent); }
 
-  /* Centrado Dinámico del Grid */
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2px;
-    justify-content: center; /* Centra el contenido si no llena la fila */
-}
+  /* BRAND SECTION */
+  .brand-section { display: grid; grid-template-columns: 1fr 1fr; min-height: 60vh; }
+  .brand-left { background: var(--accent); padding: 80px 60px; display: flex; flex-direction: column; justify-content: space-between; }
+  .brand-headline { font-family: var(--font-display); font-size: clamp(48px, 6vw, 80px); line-height: 0.95; color: var(--black); }
+  .brand-body { font-size: 15px; line-height: 1.8; color: rgba(0,0,0,0.7); max-width: 380px; }
+  .brand-right { background: var(--gray); padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; gap: 40px; }
+  .brand-value { display: flex; gap: 24px; align-items: flex-start; }
+  .brand-value-num { font-family: var(--font-display); font-size: 48px; color: var(--accent); line-height: 1; min-width: 60px; }
+  .brand-value-text h4 { font-family: var(--font-display); font-size: 22px; letter-spacing: 1px; margin-bottom: 6px; }
+  .brand-value-text p { font-size: 13px; color: #888; line-height: 1.6; }
 
-/* Footer (Restaurado) */
-footer {
-    padding: 80px 60px;
-    background: var(--black);
-    border-top: 1px solid var(--gray2);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 100px;
-}
+  /* SHOP CTA */
+  .shop-cta { display: flex; align-items: center; justify-content: space-between; padding: 60px; background: var(--gray); gap: 40px; border-top: 1px solid var(--gray2); }
+  .shop-cta-text h2 { font-family: var(--font-display); font-size: 52px; letter-spacing: 2px; margin-bottom: 8px; }
+  .shop-cta-text p { font-size: 15px; color: #888; }
+  .shop-btn { display: inline-flex; align-items: center; gap: 12px; background: #ffe600; color: #000; text-decoration: none; padding: 20px 40px; font-family: var(--font-display); font-size: 22px; letter-spacing: 2px; white-space: nowrap; transition: 0.2s; }
+  .shop-btn:hover { transform: scale(1.02); }
 
-.footer-logo {
-    font-family: var(--font-display);
-    font-size: 36px;
-    letter-spacing: 4px;
-    color: var(--white);
-}
-
-.footer-copy {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-}
+  /* FOOTER RESTAURADO */
+  footer { padding: 60px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; background: var(--black); }
+  .footer-logo { font-family: var(--font-display); font-size: 36px; letter-spacing: 4px; color: var(--white); }
+  .footer-links { display: flex; gap: 32px; list-style: none; }
+  .footer-links a { font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px; color: var(--text-muted); text-decoration: none; text-transform: uppercase; transition: 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+  .footer-copy { font-family: var(--font-mono); font-size: 10px; color: #444; letter-spacing: 1px; }
 
   @media (max-width: 768px) {
     .hero { grid-template-columns: 1fr; }
     .hero-right { display: none; }
     .categories { grid-template-columns: 1fr; }
     .products-grid { grid-template-columns: 1fr; }
-    .details-content { grid-template-columns: 1fr; }
+    .details-content { grid-template-columns: 1fr; margin: 20px; padding: 30px 20px; }
+    .brand-section { grid-template-columns: 1fr; }
+    .shop-cta { flex-direction: column; text-align: center; padding: 40px 20px; }
+    footer { flex-direction: column; gap: 24px; text-align: center; }
   }
 </style>
 </head>
@@ -141,19 +164,19 @@ footer {
     <a href="#productos-section" class="hero-cta">Ver catálogo →</a>
   </div>
   <div class="hero-right">
-  <div class="hero-visual">
-    <img src="imensologoblanco.jpg" alt="IMENSO Logo" style="width: 70%; height: auto; position: relative; z-index: 10;">
+    <div class="hero-visual">
+      <img src="imensologoblanco.png" alt="IMENSO Logo" style="width: 80%; height: auto; position: relative; z-index: 10;">
+    </div>
   </div>
-</div>
 </section>
 
 <div class="ticker">
   <div class="ticker-inner">
-    <span>BLUETOOTH 5.4</span><span>CANCELACIÓN DE RUIDO ANC+ENC</span><span>CARGA RÁPIDA</span><span>HASTA 15000MAH</span><span>ENVÍO EXPRESS</span><span>GARANTÍA INCLUIDA</span>
+    <span>BLUETOOTH 5.4</span><span>CANCELACIÓN DE RUIDO ANC+ENC</span><span>CARGA RÁPIDA</span><span>HASTA 15000MAH</span><span>ENVÍO EXPRESS</span><span>GARANTÍA INCLUIDA</span><span>BLUETOOTH 5.4</span><span>CANCELACIÓN DE RUIDO ANC+ENC</span><span>CARGA RÁPIDA</span><span>HASTA 15000MAH</span><span>ENVÍO EXPRESS</span><span>GARANTÍA INCLUIDA</span>
   </div>
 </div>
 
-<section class="section">
+<section class="section" style="padding-bottom: 0;">
   <div class="section-header">
     <div>
       <div class="section-tag">// Líneas de producto</div>
@@ -203,6 +226,56 @@ footer {
   <div class="products-grid" id="product-grid"></div>
 </section>
 
+<section class="brand-section" id="marca">
+  <div class="brand-left">
+    <div class="brand-headline">TECNOLOGÍA<br>QUE SE<br>ESCUCHA.</div>
+    <p class="brand-body">Imenso nació con una convicción simple: la tecnología de audio y carga de calidad no debería ser un lujo. Cada producto está diseñado para ofrecer desempeño real a un precio accesible, sin comprometer la experiencia del usuario.</p>
+  </div>
+  <div class="brand-right">
+    <div class="brand-value">
+      <div class="brand-value-num">01</div>
+      <div class="brand-value-text">
+        <h4>CALIDAD REAL</h4>
+        <p>Componentes seleccionados para durabilidad y desempeño. No solo especificaciones en papel.</p>
+      </div>
+    </div>
+    <div class="brand-value">
+      <div class="brand-value-num">02</div>
+      <div class="brand-value-text">
+        <h4>PRECIO JUSTO</h4>
+        <p>Tecnología accesible sin sacrificar la experiencia. El mejor balance del mercado.</p>
+      </div>
+    </div>
+    <div class="brand-value">
+      <div class="brand-value-num">03</div>
+      <div class="brand-value-text">
+        <h4>SOPORTE DIRECTO</h4>
+        <p>Respaldo de marca mexicana con atención real y garantía incluida en todos los productos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="shop-cta" id="tienda">
+  <div class="shop-cta-text">
+    <h2>COMPRA EN<br>MERCADO LIBRE</h2>
+    <p>Envío express disponible · Garantía incluida · Pago en meses sin intereses</p>
+  </div>
+  <a href="https://www.mercadolibre.com.mx/pagina/imensomex" target="_blank" class="shop-btn">
+    🛒 Ver tienda Imenso
+  </a>
+</div>
+
+<footer>
+  <div class="footer-logo">IMENSO</div>
+  <ul class="footer-links">
+    <li><a href="#productos-section">Productos</a></li>
+    <li><a href="#marca">Marca</a></li>
+    <li><a href="https://www.mercadolibre.com.mx/pagina/imensomex" target="_blank">Tienda ML</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 IMENSO — Audio & Power Technology</div>
+</footer>
+
 <div id="details">
     <div class="details-content">
         <button class="close-btn" onclick="closeDetails()">&times;</button>
@@ -210,40 +283,48 @@ footer {
     </div>
 </div>
 
-<footer>
-  <div class="footer-logo">IMENSO</div>
-  <div class="footer-copy">© 2026 IMENSO — Audio & Power Technology</div>
-</footer>
-
 <script>
     const products = [
-        { id: 1, cat: 'audifonos', name: 'Audífono Pro 5.4', sku: 'E2008', price: '$209', img: 'e2008.png', ml: 'https://www.mercadolibre.com.mx/audifono-inalambrico-bluetooth-54-sonido-claro-y-potente-bateria-de-larga-duracion-microfono-integrado-para-musica-y-llamadas-todo-el-dia-gamer-auriculares-imenso-ims-e2008-manos-libres/p/MLM56384685', desc: 'Bluetooth 5.4 estable. Sonido Hi-Fi puro con driver de 13mm.', specs: ['Conectividad: BT 5.4', 'Autonomía: 20 Horas', 'Carga: USB-C Fast'] },
-        { id: 2, cat: 'audifonos', name: 'TWS HD Compact', sku: 'E2009', price: '$148', img: 'e2009.png', ml: 'https://www.mercadolibre.com.mx/audifonos-inalambricos-bluetooth-54-con-microfono-cancelacion-de-ruido-en-llamadas-13-mm-para-graves-profundos-y-sonido-hd-ideales-para-musica-peliculas-y-uso-imenso-ims-e2009-color-blanco/p/MLM55774799', desc: 'Estuche con acabado en piel y tecnología AI para llamadas.', specs: ['Material: Textura Piel', 'Carga: 10m = 2h', 'Batería: 25 Horas'] },
-        { id: 3, cat: 'audifonos', name: 'ANC + ENC In-Ear', sku: 'E2010', price: '$189', img: 'e2010.png', ml: 'https://www.mercadolibre.com.mx/audifonos-inalambricos-cancelacion-activa-de-ruido-anc-enc-bluetooth-in-ear-auriculares-llamadas-en-alta-definicion-sonido-de-musica-superior-manos-libres-para-gamer-y-deportivos-imenso-ims-e2010/p/MLM57800182', desc: 'Tecnología ANC Dual y sonido Dolby Atmos®.', specs: ['Cancelación: Dual -25dB', 'Sonido: Dolby Atmos®', 'Carga: Inalámbrica'] },
-        { id: 4, cat: 'audifonos', name: 'Open-Ear Sport', sku: 'E2011', price: '$192.86', img: 'e2011.png', ml: 'https://www.mercadolibre.com.mx/audifonos-inalambricos-sonido-estereo-para-gamer-y-deportivos-open-ear-auriculares-bluetooth-54-con-microfono-manos-libres-imenso-ims-e2011-negro/p/MLM56677181', desc: 'Diseño abierto para seguridad deportiva IPX5.', specs: ['Resistencia: IPX5', 'Latencia: 0.05s', 'Ajuste: Open-Ear'] },
-        { id: 5, cat: 'audifonos', name: 'Long Battery TWS', sku: 'E2012', price: '$269', img: 'e2012.png', ml: 'https://www.mercadolibre.com.mx/audifonos-bluetooth-54-inalambricos-con-diseno-ergonomico-3d-auriculares-microfono-hd-diafragma-compuesto-cancelacion-inteligente-llamadas-claras-imenso-ims-e2012-manos-libres-hifi/p/MLM57971788', desc: 'Cuerpo de aluminio aeroespacial y driver de 17mm.', specs: ['Driver: 17mm Dinámico', 'Material: Aluminio', 'Autonomía: 30 Horas'] },
-        { id: 6, cat: 'audifonos', name: 'ENC Sport & Work', sku: 'E2013', price: '$298', img: 'e2013.png', ml: 'https://www.mercadolibre.com.mx/audifonos-bluetooth-con-enc-llamadas-y-deporte-auriculares-inalambricos-sonido-potente-y-bateria-duradera-manos-libres-para-deporte-trabajo-y-uso-diario-imenso-ims-e2013/p/MLM57569353', desc: 'Tecnología Beamforming para llamadas nítidas.', specs: ['Driver: 10mm Titanio', 'Peso: 28g Ultra-Light', 'Protección: IPX4'] },
-        { id: 7, cat: 'audifonos', name: 'Clip-On Series', sku: 'E2014', price: '$229', img: 'e2014negro.png', ml: 'https://www.mercadolibre.com.mx/audifonos-inalambricos-de-clip-ear-diseno-comodo-y-elegante-sonido-estereo-claro-llamadas-y-musica-sin-complicaciones-auriculares-gamer-bluetooth-imenso-ims-e2014-manos-libres/p/MLM56499537', desc: 'Evita fatiga auditiva con diseño clip-on.', specs: ['Batería: 40 Horas', 'Audio: Air Conduction', 'Ajuste: Clip-Ear'] },
-        { id: 8, cat: 'audifonos', name: 'Sleep In-Ear', sku: 'E2015', price: '$349', img: 'e2015.png', ml: 'https://www.mercadolibre.com.mx/audifonos-inalambricos-compactos-y-comodos-para-dormir-sonido-rico-con-diafragma-compuesto-cancelacion-fisica-de-ruido-auriculares-bluetooth-sin-presion-en-el-oido-ni-caidas-imenso-ims-e2015/p/MLM57547768', desc: 'Silicona médica suave ideal para dormir.', specs: ['Diseño: Side-Sleep', 'Material: Silicón Médico', 'Cancelación: -28dB'] },
-        { id: 9, cat: 'power', name: 'Powerbank 15K', sku: 'C4013', price: '$549', img: 'c4013.png', ml: 'https://articulo.mercadolibre.com.mx/MLM-4192876702-power-bank-bateria-portatil-15000mah-carga-super-rapida-_JM', desc: 'Carga inalámbrica 15W y cables integrados.', specs: ['Capacidad: 15,000 mAh', 'Wireless: 15W', 'Pantalla: LCD Precisión'] },
-        { id: 10, cat: 'power', name: 'Powerbank 10K', sku: 'C4014', price: '$465.93', img: 'c4014.png', ml: 'https://www.mercadolibre.com.mx/power-bank-bateria-portatil-10000mah-carga-super-rapida-color-negro/p/MLM63778255', desc: 'Tamaño de tarjeta con cables Lightning y USB-C.', specs: ['Capacidad: 10,000 mAh', 'Cables: Integrados', 'Diseño: Ultra-Slim'] },
-        { id: 11, cat: 'bocinas', name: 'Bocina Magnética', sku: 'S1048', price: '$199', img: 's1048.png', ml: 'https://www.mercadolibre.com.mx/mini-bocina-bluetooth-magnetica-subwoofer-altavoz-imenso-color-negro/p/MLM58592445', desc: 'Imán N52 Pro y sonido estéreo 360°.', specs: ['Imán: Neodimio N52', 'Luz: RGB Dinámica', 'Sonido: TWS Link'] }
+        { id: 1, cat: 'audifonos', name: 'Audífono Pro 5.4', sku: 'E2008', price: '$209', img: 'e2008.png', badge: '⭐ Top Ventas', ml: 'https://www.mercadolibre.com.mx/audifono-inalambrico-bluetooth-54-sonido-claro-y-potente-bateria-de-larga-duracion-microfono-integrado-para-musica-y-llamadas-todo-el-dia-gamer-auriculares-imenso-ims-e2008-manos-libres/p/MLM56384685', desc: 'Bluetooth 5.4 estable. Sonido Hi-Fi puro con driver de 13mm y graves profundos.', specs: ['Conectividad: BT 5.4', 'Autonomía: 20 Horas', 'Carga: USB-C Fast'] },
+        { id: 2, cat: 'audifonos', name: 'TWS HD Compact', sku: 'E2009', price: '$148', img: 'e2009.png', ml: 'https://www.mercadolibre.com.mx/audifonos-inalambricos-bluetooth-54-con-microfono-cancelacion-de-ruido-en-llamadas-13-mm-para-graves-profundos-y-sonido-hd-ideales-para-musica-peliculas-y-uso-imenso-ims-e2009-color-blanco/p/MLM55774799', desc: 'Elegancia y potencia. Estuche con acabado en piel y tecnología AI para llamadas.', specs: ['Material: Textura Piel', 'Carga: 10m = 2h', 'Batería: 25 Horas'] },
+        { id: 3, cat: 'audifonos', name: 'ANC + ENC In-Ear', sku: 'E2010', price: '$189', img: 'e2010.png', ml: 'https://www.mercadolibre.com.mx/audifonos-inalambricos-cancelacion-activa-de-ruido-anc-enc-bluetooth-in-ear-auriculares-llamadas-en-alta-definicion-sonido-de-musica-superior-manos-libres-para-gamer-y-deportivos-imenso-ims-e2010/p/MLM57800182', desc: 'Silencio total con tecnología ANC Dual. Sonido Dolby Atmos® para una inmersión.', specs: ['Cancelación: Dual -25dB', 'Sonido: Dolby Atmos®', 'Carga: Inalámbrica'] },
+        { id: 4, cat: 'audifonos', name: 'Open-Ear Sport', sku: 'E2011', price: '$192.86', img: 'e2011.png', badge: '🔥 Trending', ml: 'https://www.mercadolibre.com.mx/audifonos-inalambricos-sonido-estereo-para-gamer-y-deportivos-open-ear-auriculares-bluetooth-54-con-microfono-manos-libres-imenso-ims-e2011-negro/p/MLM56677181', desc: 'Seguridad y confort. Escucha tu entorno mientras disfrutas de tu música. Ideal para correr.', specs: ['Resistencia: IPX5', 'Latencia: 0.05s', 'Ajuste: Open-Ear'] },
+        { id: 5, cat: 'audifonos', name: 'Long Battery TWS', sku: 'E2012', price: '$269', img: 'e2012.png', ml: 'https://www.mercadolibre.com.mx/audifonos-bluetooth-54-inalambricos-con-diseno-ergonomico-3d-auriculares-microfono-hd-diafragma-compuesto-cancelacion-inteligente-llamadas-claras-imenso-ims-e2012-manos-libres-hifi/p/MLM57971788', desc: 'Cuerpo de aluminio aeroespacial. Driver de 17mm que entrega potencia sin distorsión.', specs: ['Driver: 17mm Dinámico', 'Material: Aluminio', 'Autonomía: 30 Horas'] },
+        { id: 6, cat: 'audifonos', name: 'ENC Sport & Work', sku: 'E2013', price: '$298', img: 'e2013.png', ml: 'https://www.mercadolibre.com.mx/audifonos-bluetooth-con-enc-llamadas-y-deporte-auriculares-inalambricos-sonido-potente-y-bateria-duradera-manos-libres-para-deporte-trabajo-y-uso-diario-imenso-ims-e2013/p/MLM57569353', desc: 'Diseño ultra ligero de 28g. Tecnología Beamforming para llamadas en ambientes ruidosos.', specs: ['Driver: 10mm Titanio', 'Peso: 28g Ultra-Light', 'Protección: IPX4'] },
+        { id: 7, cat: 'audifonos', name: 'Clip-On Series', sku: 'E2014', price: '$229', img: 'e2014negro.png', ml: 'https://www.mercadolibre.com.mx/audifonos-inalambricos-de-clip-ear-diseno-comodo-y-elegante-sonido-estereo-claro-llamadas-y-musica-sin-complicaciones-auriculares-gamer-bluetooth-imenso-ims-e2014-manos-libres/p/MLM56499537', desc: 'Comodidad absoluta. No entra en el canal auditivo, evitando fatiga tras horas de uso.', specs: ['Batería: 40 Horas', 'Audio: Air Conduction', 'Ajuste: Clip-Ear'] },
+        { id: 8, cat: 'audifonos', name: 'Sleep In-Ear', sku: 'E2015', price: '$329', img: 'e2015.png', ml: 'https://www.mercadolibre.com.mx/audifonos-inalambricos-compactos-y-comodos-para-dormir-sonido-rico-con-diafragma-compuesto-cancelacion-fisica-de-ruido-auriculares-bluetooth-sin-presion-en-el-oido-ni-caidas-imenso-ims-e2015/p/MLM57547768', desc: 'Los más pequeños del mundo. Silicona médica suave para dormir sin molestias.', specs: ['Diseño: Side-Sleep', 'Material: Silicón Médico', 'Cancelación: -28dB'] },
+        { id: 9, cat: 'power', name: 'Powerbank 15K', sku: 'C4013', price: '$549', img: 'c4013.png', badge: '⚡ Potente', ml: 'https://articulo.mercadolibre.com.mx/MLM-4192876702-power-bank-bateria-portatil-15000mah-carga-super-rapida-_JM', desc: 'Batería de alta densidad. Carga inalámbrica rápida y cables ocultos integrados.', specs: ['Capacidad: 15,000 mAh', 'Wireless: 15W', 'Pantalla: LCD Precisión'] },
+        { id: 10, cat: 'power', name: 'Powerbank 10K', sku: 'C4014', price: '$465.93', img: 'c4014.png', badge: '🏆 Best Seller', ml: 'https://www.mercadolibre.com.mx/power-bank-bateria-portatil-10000mah-carga-super-rapida-color-negro/p/MLM63778255', desc: 'Ultradelgada. Tamaño de una tarjeta de crédito. Incluye cables Lightning y USB-C.', specs: ['Capacidad: 10,000 mAh', 'Cables: Integrados', 'Diseño: Ultra-Slim'] },
+        { id: 11, cat: 'bocinas', name: 'Bocina Magnética', sku: 'S1048', price: '$199', img: 's1048.png', ml: 'https://www.mercadolibre.com.mx/mini-bocina-bluetooth-magnetica-subwoofer-altavoz-imenso-color-negro/p/MLM58592445', desc: 'Poder magnético N52. Pégala a tu teléfono. Sonido 360 y luces RGB dinámicas.', specs: ['Imán: Neodimio N52', 'Luz: RGB Dinámica', 'Sonido: TWS Link'] }
     ];
 
     function renderProducts(filter = 'todos') {
         const grid = document.getElementById('product-grid');
         const list = filter === 'todos' ? products : products.filter(p => p.cat === filter);
         
-        grid.innerHTML = list.map(p => `
+        grid.innerHTML = list.map(p => {
+            let specsHTML = '';
+            p.specs.forEach(s => {
+                let parts = s.split(':');
+                if(parts.length > 1) {
+                    specsHTML += `<div class="spec"><span class="spec-key">${parts[0]}</span><span class="spec-val">${parts[1]}</span></div>`;
+                }
+            });
+
+            return `
             <div class="product-card" onclick="openDetails(${p.id})">
+                ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
                 <div class="product-img-wrap">
                     <img src="${p.img}" class="product-img" onerror="this.src='https://via.placeholder.com/200?text=IMS'">
                 </div>
                 <div class="product-sku">IMS-${p.sku}</div>
                 <div class="product-name">${p.name}</div>
+                <p class="product-desc">${p.desc}</p>
+                <div class="product-specs">${specsHTML}</div>
                 <div class="product-price">${p.price}</div>
             </div>
-        `).join('');
+            `;
+        }).join('');
     }
 
     function filterByCategory(cat) {
@@ -259,8 +340,11 @@ footer {
     function openDetails(id) {
         const p = products.find(x => x.id === id);
         document.getElementById('details-body').innerHTML = `
-            <div class="details-img-box"><img src="${p.img}" class="details-img"></div>
+            <div class="details-img-box">
+                <img src="${p.img}" class="details-img" onerror="this.src='https://via.placeholder.com/200?text=IMENSO'">
+            </div>
             <div class="details-info">
+                <div style="font-family:var(--font-mono); font-size:12px; color:var(--text-muted); margin-bottom:10px; letter-spacing:2px;">IMS-${p.sku}</div>
                 <h1>${p.name.toUpperCase()}</h1>
                 <div class="price-big">${p.price}</div>
                 <p>${p.desc}</p>
@@ -270,6 +354,7 @@ footer {
         `;
         document.getElementById('details').style.display = 'block';
         document.body.style.overflow = 'hidden';
+        history.pushState({view: 'product'}, "");
     }
 
     function closeDetails() {
@@ -277,17 +362,9 @@ footer {
         document.body.style.overflow = 'auto';
     }
 
+    window.onpopstate = () => closeDetails();
     renderProducts();
-  <footer>
-  <div class="footer-logo">IMENSO</div>
-  <ul class="footer-links" style="display: flex; gap: 32px; list-style: none;">
-    <li><a href="#productos" style="color: var(--text-muted); text-decoration: none; font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px;">PRODUCTOS</a></li>
-    <li><a href="#marca" style="color: var(--text-muted); text-decoration: none; font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px;">MARCA</a></li>
-  </ul>
-  <div class="footer-copy">© 2026 IMENSO — Audio & Power Technology</div>
-</footer>
 </script>
+
 </body>
 </html>
-
-
