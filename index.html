@@ -80,8 +80,38 @@
   .details-img { width: 100%; max-height: 400px; object-fit: contain; }
   .btn-buy { display: inline-block; background: var(--accent); color: var(--white); padding: 18px 40px; text-decoration: none; font-family: var(--font-mono); font-size: 14px; margin-top: 20px; font-weight: bold; }
 
-  /* FOOTER */
-  footer { padding: 60px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; }
+  /* Centrado Dinámico del Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2px;
+    justify-content: center; /* Centra el contenido si no llena la fila */
+}
+
+/* Footer (Restaurado) */
+footer {
+    padding: 80px 60px;
+    background: var(--black);
+    border-top: 1px solid var(--gray2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.footer-logo {
+    font-family: var(--font-display);
+    font-size: 36px;
+    letter-spacing: 4px;
+    color: var(--white);
+}
+
+.footer-copy {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
 
   @media (max-width: 768px) {
     .hero { grid-template-columns: 1fr; }
@@ -112,7 +142,7 @@
   </div>
   <div class="hero-right">
   <div class="hero-visual">
-    <img src="imensologoblanco.png" alt="IMENSO Logo" style="width: 70%; height: auto; position: relative; z-index: 10;">
+    <img src="imensologoblanco.jpg" alt="IMENSO Logo" style="width: 70%; height: auto; position: relative; z-index: 10;">
   </div>
 </div>
 </section>
@@ -248,7 +278,16 @@
     }
 
     renderProducts();
+  <footer>
+  <div class="footer-logo">IMENSO</div>
+  <ul class="footer-links" style="display: flex; gap: 32px; list-style: none;">
+    <li><a href="#productos" style="color: var(--text-muted); text-decoration: none; font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px;">PRODUCTOS</a></li>
+    <li><a href="#marca" style="color: var(--text-muted); text-decoration: none; font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px;">MARCA</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 IMENSO — Audio & Power Technology</div>
+</footer>
 </script>
 </body>
 </html>
+
 
